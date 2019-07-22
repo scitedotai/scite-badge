@@ -1,0 +1,22 @@
+{
+  "name": "scite-badge",
+  "version": "1.0.0",
+  "description": "Wrapper around scite-extension",
+  "main": "index.js",
+  "scripts": {
+    "build": "parcel build src/index.js",
+    "dev": "parcel src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Milo Mordaunt <milomord@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "preact": "^8.4.2",
+    "scite-extension": "github:scitedotai/scite-extension#master"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-transform-react-jsx": "^7.3.0",
+    "parcel-bundler": "^1.12.3"
+  }
+}

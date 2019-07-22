@@ -1,0 +1,19 @@
+.scite-badge {
+    width: 75px;
+    border-radius: 8px;
+    border: 1px solid #cfcfcf;
+    overflow: hidden;
+}
+
+.badges {
+    width: 33%;
+}
+
+.badge-row {
+    display: flex;
+}
+
+.badge-row > .scite-badge {
+    margin: 16px;
+    flex-shrink: 0;
+}
