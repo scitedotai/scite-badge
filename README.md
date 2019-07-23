@@ -2,6 +2,16 @@
 
 Thin wrapper around [scite browser extension](https://github.com/scitedotai/scite-extension) to allow embedding on pages.
 
+## Example Usage ##
+
+To use simply include the Javascript and CSS styles on your page. All elements with the class `scite-bage` will have a badge injected into them, with the target DOI selected by the `data-doi` attribute.
+
+```
+<link rel="stylesheet" type="text/css" href="https://cdn.scite.ai/badge/scite-badge-v1.0.2.min.css">
+<script type="application/javascript" src="https://cdn.scite.ai/badge/scite-badge-v1.0.2.min.js"></script>
+<div class="scite-badge" data-doi="10.1016/j.biopsych.2005.08.012"></div>
+```
+
 ## Release ##
 
 Releases are uploaded to Azure. To do a release run something like:
