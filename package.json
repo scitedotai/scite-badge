@@ -4,7 +4,7 @@
   "description": "Wrapper around scite-extension",
   "main": "index.js",
   "scripts": {
-    "build": "parcel build src/index.js",
+    "build": "parcel build src/index.js -o scite-badge-$(git describe --always).min",
     "dev": "parcel src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
