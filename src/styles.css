@@ -3,6 +3,7 @@
     border-radius: 8px;
     border: 1px solid #cfcfcf;
     overflow: hidden;
+    min-height: 120px;
 }
 
 .badges {
