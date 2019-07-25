@@ -1,3 +1,5 @@
+import 'whatwg-fetch'
+
 import { h, render } from 'preact'
 import { Tally } from 'scite-extension'
 import 'scite-extension/src/styles.css'

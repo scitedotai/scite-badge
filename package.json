@@ -1,6 +1,6 @@
 {
   "name": "scite-badge",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Wrapper around scite-extension",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,8 @@
   "license": "ISC",
   "dependencies": {
     "preact": "^8.4.2",
-    "scite-extension": "github:scitedotai/scite-extension#master"
+    "scite-extension": "github:scitedotai/scite-extension#master",
+    "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
