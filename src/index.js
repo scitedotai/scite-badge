@@ -7,9 +7,9 @@ import './styles.css'
 
 function insertBadges () {
   const badges = document.querySelectorAll('.scite-badge')
-  for (let badge of badges) {
+  for (const badge of badges) {
     const data = badge.dataset
-    render(<Tally doi={data.doi} />, badge)
+    render(<Tally doi={data.doi} horizontal={data.layout === 'horizontal'} />, badge)
   }
 }
 
