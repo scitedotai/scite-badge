@@ -6,7 +6,7 @@
   "scripts": {
     "build": "parcel build src/index.js --no-source-maps -o scite-badge-$(git describe --always).min.js",
     "upload": "./scripts/upload.sh",
-    "dev": "parcel src/index.js",
+    "dev": "parcel src/index.js src/test-page.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Milo Mordaunt <milomord@gmail.com>",

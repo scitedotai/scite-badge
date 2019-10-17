@@ -9,7 +9,15 @@ function insertBadges () {
   const badges = document.querySelectorAll('.scite-badge')
   for (const badge of badges) {
     const data = badge.dataset
-    render(<Tally doi={data.doi} horizontal={data.layout === 'horizontal'} />, badge)
+    render(
+      <Tally
+        doi={data.doi}
+        horizontal={data.layout === 'horizontal'}
+        source={data.source}
+        campaign={data.campaign}
+        isBadge
+      />,
+      badge)
   }
 }
 
