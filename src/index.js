@@ -9,6 +9,7 @@ function insertBadges () {
   const badges = document.querySelectorAll('.scite-badge')
   for (const badge of badges) {
     const data = badge.dataset
+    badge.innerHTML = ''
     render(
       <Tally
         doi={data.doi}
@@ -22,3 +23,7 @@ function insertBadges () {
 }
 
 window.addEventListener('load', () => insertBadges())
+
+window.__SCITE = {
+  insertBadges
+}
