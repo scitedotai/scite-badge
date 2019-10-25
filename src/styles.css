@@ -7,7 +7,7 @@
 }
 
 .scite-badge[data-layout='horizontal'] {
-    width: auto;
+    width: 185px;
     min-height: 0px;
     max-height: 32px;
 }
