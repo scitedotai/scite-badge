@@ -14,8 +14,6 @@ function insertBadges () {
       <Tally
         doi={data.doi}
         horizontal={data.layout === 'horizontal'}
-        source={data.source}
-        campaign={data.campaign}
         isBadge
       />,
       badge)
