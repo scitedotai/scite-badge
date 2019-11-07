@@ -1,7 +1,7 @@
 #!/bin/bash
 ACCOUNT=sciteproductionassets
 CONTAINER=badge
-CACHE_CONTROL='max-age=31557600'
+CACHE_CONTROL='max-age=86400'
 VERSION=$(git describe --always)
 
 # Uploads file from ./dist to blob storage
