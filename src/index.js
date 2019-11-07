@@ -9,11 +9,13 @@ function insertBadges () {
   const badges = document.querySelectorAll('.scite-badge')
   for (const badge of badges) {
     const data = badge.dataset
+    const showZero = data.showZero === 'true'
     badge.innerHTML = ''
     render(
       <Tally
         doi={data.doi}
         horizontal={data.layout === 'horizontal'}
+        showZero={showZero}
         isBadge
       />,
       badge)
