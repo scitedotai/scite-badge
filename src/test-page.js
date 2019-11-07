@@ -10,7 +10,7 @@ const rows = [
     layout: 'vertical'
   },
   {
-    doi: '10.1016/j.biopsych.2005.08.012',
+    doi: '10.notrealjoaifds',
     layout: 'vertical'
   },
   {
