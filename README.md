@@ -15,6 +15,7 @@ To use simply include the Javascript and CSS styles on your page. All elements w
 ## Settings ##
 
 `doi`: Target DOI
+
 `layout`: Either 'vertical' (default) or 'horizontal'
 
 ## Release ##
