@@ -7,9 +7,9 @@ import '../styles/Tooltip.css'
 const TooltipTally = ({ className, tally }) => (
   <div className={classNames('scite-tooltip-tally', className)}>
     <div className='tally'>
-      <Count type='supporting' count={tally ? tally.supporting : 0} />
-      <Count type='mentioning' count={tally ? tally.mentioning : 0} />
-      <Count type='contradicting' count={tally ? tally.contradicting : 0} />
+      <Count className='count' type='supporting' count={tally ? tally.supporting : 0} />
+      <Count className='count' type='mentioning' count={tally ? tally.mentioning : 0} />
+      <Count className='count' type='contradicting' count={tally ? tally.contradicting : 0} />
     </div>
     <div className='scite-tally-labels labels'>
       <span className='label'>Supporting</span>

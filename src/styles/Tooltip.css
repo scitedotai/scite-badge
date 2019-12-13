@@ -73,10 +73,15 @@
     margin-top: 12px;
 }
 
+.scite-tooltip-tally {
+    line-height: 1.5;
+}
+
 .scite-tooltip-tally > .tally {
     display: inline-block;
     width: 50px;
 }
+
 
 .scite-tooltip-tally > .labels {
     display: inline-block;
