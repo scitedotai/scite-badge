@@ -28,13 +28,7 @@ const Link = ({ className, href, children }) => (
 const TooltipMessage = ({ className }) => (
   <div className={classNames('scite-tooltip-message', className)}>
     <p className='bold'>
-      see all citations for the article at
-      <Link
-        className='link'
-        href='https://scite.ai'
-      >
-        scite.ai
-      </Link>
+      see all citations for the article at <Link className='link' href='https://scite.ai'>scite.ai</Link>
     </p>
     <p>
       scite is a platform that combines deep learning with expert
