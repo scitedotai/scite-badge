@@ -1,9 +1,9 @@
-import 'whatwg-fetch'
-
-import { h, render } from 'preact'
-import { Tally } from 'scite-extension'
-import 'scite-extension/src/styles.css'
-import './styles.css'
+import React from 'react'
+import { render } from 'react-dom'
+import { Tally } from 'scite-widget'
+import Tooltip from './components/Tooltip'
+import 'scite-widget/lib/main.css'
+import './styles/index.css'
 
 function insertBadges () {
   const badges = document.querySelectorAll('.scite-badge')
@@ -12,12 +12,16 @@ function insertBadges () {
     const showZero = data.showZero === 'true'
     badge.innerHTML = ''
     render(
-      <Tally
-        doi={data.doi}
-        horizontal={data.layout === 'horizontal'}
-        showZero={showZero}
-        isBadge
-      />,
+      (
+        <Tooltip>
+          <Tally
+            doi={data.doi}
+            horizontal={data.layout === 'horizontal'}
+            showZero={showZero}
+            isBadge
+          />
+        </Tooltip>
+      ),
       badge)
   }
 }

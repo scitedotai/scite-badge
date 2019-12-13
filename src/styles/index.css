@@ -1,4 +1,6 @@
-.scite-badge > .scite-tally {
+@import './tooltip.css';
+
+.scite-badge > div > .scite-tally {
     width: 75px;
     border-radius: 8px;
     border: 1px solid #cfcfcf;
@@ -8,7 +10,7 @@
     box-sizing: border-box;
 }
 
-.scite-badge[data-layout='horizontal'] > .scite-tally {
+.scite-badge[data-layout='horizontal'] > div > .scite-tally {
     width: 185px;
     min-height: 0px;
     max-height: 32px;
