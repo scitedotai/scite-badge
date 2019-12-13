@@ -52,16 +52,22 @@ const TooltipContent = ({ tally }) => (
 export const Tooltip = ({ tally, children }) => {
   const [showTooltip, setShowTooltip] = useState(false)
   let hideTooltipIntvl
+  let showTooltipIntvl
   let updatePosition
 
   const handleMouseEnter = () => {
     if (hideTooltipIntvl) {
       clearTimeout(hideTooltipIntvl)
     }
-    setShowTooltip(true)
+    showTooltipIntvl = setTimeout(() => {
+      setShowTooltip(true)
+    }, 500)
   }
 
   const handleMouseLeave = () => {
+    if (showTooltipIntvl) {
+      clearTimeout(showTooltipIntvl)
+    }
     hideTooltipIntvl = setTimeout(() => {
       setShowTooltip(false)
     }, 300)
