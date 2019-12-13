@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import classNames from 'classnames'
 import { Manager, Reference, Popper } from 'react-popper'
-import { Count } from 'scite-widget'
+import { Count, TextLogo } from 'scite-widget'
+import '../styles/Tooltip.css'
 
 const TooltipTally = ({ className, tally }) => (
   <div className={classNames('scite-tooltip-tally', className)}>
@@ -18,8 +19,23 @@ const TooltipTally = ({ className, tally }) => (
   </div>
 )
 
+const Link = ({ className, href, children }) => (
+  <a className={classNames('scite-link', className)} href={href} target='_blank' rel='noopener noreferrer'>
+    {children}
+  </a>
+)
+
 const TooltipMessage = ({ className }) => (
   <div className={classNames('scite-tooltip-message', className)}>
+    <p className='bold'>
+      see all citations for the article at
+      <Link
+        className='link'
+        href='https://scite.ai'
+      >
+        scite.ai
+      </Link>
+    </p>
     <p>
       scite is a platform that combines deep learning with expert
       analysis to automatically classify citations as supporting,
@@ -30,37 +46,32 @@ const TooltipMessage = ({ className }) => (
 
 const TooltipContent = ({ tally }) => (
   <div className='scite-tooltip-content'>
-    <span className='scite-title'>scite_</span>
+    <TextLogo />
     <span className='slogan'>Making Science Reliable</span>
 
-    <TooltipTally tally={tally} />
+    <TooltipTally className='tally' tally={tally} />
     {tally && <a className='scite-button button' href={`https://scite.ai/reports/${tally.doi}`} target='_blank' rel='noopener noreferrer'>View Citations</a>}
     <TooltipMessage className='message' />
   </div>
 )
 
-const handleMouseEnter = ({
-  hideTooltipIntvl,
-  setShowTooltip
-}) => () => {
-  if (hideTooltipIntvl) {
-    clearTimeout(hideTooltipIntvl)
-  }
-  setShowTooltip(true)
-}
-
-const handleMouseLeave = ({
-  hideTooltipIntvl,
-  setShowTooltip
-}) => () => {
-  hideTooltipIntvl = setTimeout(() => {
-    setShowTooltip(false)
-  }, 300)
-}
-
 export const Tooltip = ({ tally, children }) => {
   const [showTooltip, setShowTooltip] = useState(false)
   let hideTooltipIntvl
+  let updatePosition
+
+  const handleMouseEnter = () => {
+    if (hideTooltipIntvl) {
+      clearTimeout(hideTooltipIntvl)
+    }
+    setShowTooltip(true)
+  }
+
+  const handleMouseLeave = () => {
+    hideTooltipIntvl = setTimeout(() => {
+      setShowTooltip(false)
+    }, 300)
+  }
 
   const classes = {
     tooltip: classNames('scite-tooltip', {
@@ -68,14 +79,17 @@ export const Tooltip = ({ tally, children }) => {
     })
   }
 
+  // XXX: Hack to fix positioning on first load, sorry
+  useEffect(() => updatePosition && updatePosition(), [tally])
+
   return (
     <Manager>
       <Reference>
         {({ ref }) => (
           <div
             ref={ref}
-            onMouseEnter={handleMouseEnter({ setShowTooltip, hideTooltipIntvl })}
-            onMouseLeave={handleMouseLeave({ setShowTooltip, hideTooltipIntvl })}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           >
             {children}
           </div>
@@ -83,19 +97,23 @@ export const Tooltip = ({ tally, children }) => {
       </Reference>
 
       <Popper placement='top'>
-        {({ ref, style, placement, arrowProps, scheduleUpdate }) => (
-          <div
-            ref={ref}
-            className={classes.tooltip}
-            style={style}
-            data-placement={placement}
-            onMouseEnter={handleMouseEnter({ setShowTooltip, hideTooltipIntvl })}
-            onMouseLeave={handleMouseLeave({ setShowTooltip, hideTooltipIntvl })}
-          >
-            <TooltipContent tally={tally} />
-            <div className='scite-tooltip-arrow' ref={arrowProps.ref} style={arrowProps.style} />
-          </div>
-        )}
+        {({ ref, style, placement, arrowProps, scheduleUpdate }) => {
+          updatePosition = scheduleUpdate
+
+          return (
+            <div
+              ref={ref}
+              className={classes.tooltip}
+              style={style}
+              data-placement={placement}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              <TooltipContent tally={tally} />
+              <div className='scite-tooltip-arrow' ref={arrowProps.ref} style={arrowProps.style} />
+            </div>
+          )
+        }}
       </Popper>
     </Manager>
   )

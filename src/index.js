@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { Tally } from 'scite-widget'
+import { Tally, TallyLoader } from 'scite-widget'
 import Tooltip from './components/Tooltip'
 import 'scite-widget/lib/main.css'
 import './styles/index.css'
@@ -13,14 +13,18 @@ function insertBadges () {
     badge.innerHTML = ''
     render(
       (
-        <Tooltip>
-          <Tally
-            doi={data.doi}
-            horizontal={data.layout === 'horizontal'}
-            showZero={showZero}
-            isBadge
-          />
-        </Tooltip>
+        <TallyLoader doi={data.doi}>
+          {({ tally }) => (
+            <Tooltip tally={tally}>
+              <Tally
+                tally={tally}
+                horizontal={data.layout === 'horizontal'}
+                showZero={showZero}
+                isBadge
+              />
+            </Tooltip>
+          )}
+        </TallyLoader>
       ),
       badge)
   }
