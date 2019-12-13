@@ -110,7 +110,6 @@ export const Tooltip = ({ tally, children }) => {
               onMouseLeave={handleMouseLeave}
             >
               <TooltipContent tally={tally} />
-              <div className='scite-tooltip-arrow' ref={arrowProps.ref} style={arrowProps.style} />
             </div>
           )
         }}

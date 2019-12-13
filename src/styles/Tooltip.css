@@ -22,43 +22,62 @@
     pointer-events: auto;
 }
 
-.scite-tooltip-arrow {
-    border-width: 10px 10px 0 10px;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    position: absolute;
-    margin: 10px;
-    border-color: white;
-}
-
-
 .scite-tooltip[data-placement="top"] {
-    margin-bottom: 4px;
-}
-
-.scite-tooltip[data-placement="top"] > .scite-tooltip-arrow {
-    border-width: 10px 10px 0 10px;
-    border-left-color: transparent;
-    border-right-color: transparent;
-    border-bottom-color: transparent;
-    bottom: -10px;
-    margin-top: 0;
-    margin-bottom: 0;
+    margin-bottom: 2px;
 }
 
 .scite-tooltip[data-placement="bottom"] {
-    margin-top: 4px;
+    margin-top: 2px;
 }
 
-.scite-tooltip[data-placement="bottom"] > .scite-tooltip-arrow {
-    border-width: 0 10px 10px 10px;
-    border-left-color: transparent;
-    border-right-color: transparent;
-    border-top-color: transparent;
-    top: -10px;
-    margin-top: 0;
-    margin-bottom: 0;
+.scite-tooltip[data-placement="top"]:after, .scite-tooltip[data-placement="top"]:before {
+	top: 100%;
+	left: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.scite-tooltip[data-placement="top"]:after {
+	border-color: rgba(255, 255, 255, 0);
+	border-top-color: #FFFFFF;
+	border-width: 10px;
+	margin-left: -10px;
+}
+
+.scite-tooltip[data-placement="top"]:before {
+	border-color: rgba(235, 235, 235, 0);
+	border-top-color: #ebebeb;
+	border-width: 11px;
+	margin-left: -11px;
+}
+
+.scite-tooltip[data-placement="bottom"]:after, .scite-tooltip[data-placement="bottom"]:before {
+	bottom: 100%;
+	left: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.scite-tooltip[data-placement="bottom"]:after {
+	border-color: rgba(255, 255, 255, 0);
+	border-bottom-color: #FFFFFF;
+	border-width: 10px;
+	margin-left: -10px;
+}
+
+.scite-tooltip[data-placement="bottom"]:before {
+	border-color: rgba(235, 235, 235, 0);
+	border-bottom-color: #ebebeb;
+	border-width: 11px;
+	margin-left: -11px;
 }
 
 .scite-tooltip-content {
