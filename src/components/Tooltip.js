@@ -73,6 +73,10 @@ export const Tooltip = ({ tally, children }) => {
     }, 300)
   }
 
+  const handleClickTooltip = () => {
+    window.open(`https://scite.ai/reports/${tally.doi}`)
+  }
+
   const classes = {
     tooltip: classNames('scite-tooltip', {
       '-show': showTooltip
@@ -109,6 +113,7 @@ export const Tooltip = ({ tally, children }) => {
               data-placement={placement}
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
+              onClick={handleClickTooltip}
             >
               <TooltipContent tally={tally} />
             </div>
