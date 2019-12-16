@@ -93,7 +93,8 @@
 }
 
 .scite-tooltip-content > .slogan {
-    margin-left: 8px;
+    display: block;
+    margin-top: 4px;
 }
 
 .scite-tooltip-content > .tally {

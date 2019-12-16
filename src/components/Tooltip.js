@@ -41,7 +41,7 @@ const TooltipMessage = ({ className }) => (
 const TooltipContent = ({ tally }) => (
   <div className='scite-tooltip-content'>
     <TextLogo />
-    <span className='slogan'>Making Science Reliable</span>
+    <span className='slogan'>Citation Statements</span>
 
     <TooltipTally className='tally' tally={tally} />
     {tally && <a className='scite-button button' href={`https://scite.ai/reports/${tally.doi}`} target='_blank' rel='noopener noreferrer'>View Citations</a>}
