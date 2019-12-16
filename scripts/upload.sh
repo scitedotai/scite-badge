@@ -30,5 +30,13 @@ function upload_blob() {
 upload_blob "scite-badge-$VERSION.min.js"
 upload_blob "scite-badge-$VERSION.min.css"
 
-upload_blob "scite-badge-$VERSION.min.js" "scite-badge-latest.min.js"
-upload_blob "scite-badge-$VERSION.min.css" "scite-badge-latest.min.css"
+if [[ $1 == "prod" ]]; then
+    echo "Uploading to production"
+    upload_blob "scite-badge-$VERSION.min.js" "scite-badge-latest.min.js"
+    upload_blob "scite-badge-$VERSION.min.css" "scite-badge-latest.min.css"
+else
+    echo "Uploading to staging"
+    upload_blob "scite-badge-$VERSION.min.js" "scite-badge-stage.min.js"
+    upload_blob "scite-badge-$VERSION.min.css" "scite-badge-stage.min.css"
+fi
+
