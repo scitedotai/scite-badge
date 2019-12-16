@@ -80,6 +80,12 @@
 	margin-left: -11px;
 }
 
+.scite-tooltip-reference {
+    /* So it doesn't get wider than the badge itself
+     * based on the width of the container */
+    width: 75px;
+}
+
 .scite-tooltip-content {
     font-size: 14px;
 }

@@ -87,6 +87,7 @@ export const Tooltip = ({ tally, children }) => {
       <Reference>
         {({ ref }) => (
           <div
+            className='scite-tooltip-reference'
             ref={ref}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
