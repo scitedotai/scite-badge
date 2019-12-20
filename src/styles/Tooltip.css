@@ -14,7 +14,8 @@
 
     z-index: 9999;
 
-    max-width: 250px;
+    width: 250px;
+    height: 316px;
 
     cursor: pointer;
 }
