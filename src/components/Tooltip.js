@@ -101,7 +101,7 @@ export const Tooltip = ({ tally, children }) => {
         )}
       </Reference>
 
-      <Popper placement='top'>
+      <Popper>
         {({ ref, style, placement, arrowProps, scheduleUpdate }) => {
           updatePosition = scheduleUpdate
 
