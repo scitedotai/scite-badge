@@ -1,4 +1,4 @@
-.scite-tooltip {
+.tooltip {
     font-family: "Circular";
 
     opacity: 0;
@@ -20,28 +20,28 @@
     cursor: pointer;
 }
 
-.scite-tooltip.-show {
+.tooltipShow {
     opacity: 1;
     pointer-events: auto;
 }
 
-.scite-tooltip[data-placement="top"] {
+.tooltip[data-placement="top"] {
     margin-bottom: 2px;
 }
 
-.scite-tooltip[data-placement="left"] {
+.tooltip[data-placement="left"] {
     margin-right: 2px;
 }
 
-.scite-tooltip[data-placement="right"] {
+.tooltip[data-placement="right"] {
     margin-left: 2px;
 }
 
-.scite-tooltip[data-placement="bottom"] {
+.tooltip[data-placement="bottom"] {
     margin-top: 2px;
 }
 
-.scite-tooltip[data-placement="top"]:after, .scite-tooltip[data-placement="top"]:before {
+.tooltip[data-placement="top"]:after, .tooltip[data-placement="top"]:before {
 	top: 100%;
 	left: 50%;
 	border: solid transparent;
@@ -52,21 +52,21 @@
 	pointer-events: none;
 }
 
-.scite-tooltip[data-placement="top"]:after {
+.tooltip[data-placement="top"]:after {
 	border-color: rgba(255, 255, 255, 0);
 	border-top-color: #FFFFFF;
 	border-width: 10px;
 	margin-left: -10px;
 }
 
-.scite-tooltip[data-placement="top"]:before {
+.tooltip[data-placement="top"]:before {
 	border-color: rgba(235, 235, 235, 0);
 	border-top-color: #ebebeb;
 	border-width: 11px;
 	margin-left: -11px;
 }
 
-.scite-tooltip[data-placement="left"]:after, .scite-tooltip[data-placement="left"]:before {
+.tooltip[data-placement="left"]:after, .tooltip[data-placement="left"]:before {
 	left: 100%;
 	top: 50%;
 	border: solid transparent;
@@ -77,21 +77,21 @@
 	pointer-events: none;
 }
 
-.scite-tooltip[data-placement="left"]:after {
+.tooltip[data-placement="left"]:after {
 	border-color: rgba(255, 255, 255, 0);
 	border-left-color: #ffffff;
 	border-width: 10px;
 	margin-top: -10px;
 }
 
-.scite-tooltip[data-placement="left"]:before {
+.tooltip[data-placement="left"]:before {
 	border-color: rgba(235, 235, 235, 0);
 	border-left-color: #ebebeb;
 	border-width: 11px;
 	margin-top: -11px;
 }
 
-.scite-tooltip[data-placement="right"]:after, .scite-tooltip[data-placement="right"]:before {
+.tooltip[data-placement="right"]:after, .tooltip[data-placement="right"]:before {
 	right: 100%;
 	top: 50%;
 	border: solid transparent;
@@ -102,21 +102,21 @@
 	pointer-events: none;
 }
 
-.scite-tooltip[data-placement="right"]:after {
+.tooltip[data-placement="right"]:after {
 	border-color: rgba(255, 255, 255, 0);
 	border-right-color: #ffffff;
 	border-width: 10px;
 	margin-top: -10px;
 }
 
-.scite-tooltip[data-placement="right"]:before {
+.tooltip[data-placement="right"]:before {
 	border-color: rgba(235, 235, 235, 0);
 	border-right-color: #ebebeb;
 	border-width: 11px;
 	margin-top: -11px;
 }
 
-.scite-tooltip[data-placement="bottom"]:after, .scite-tooltip[data-placement="bottom"]:before {
+.tooltip[data-placement="bottom"]:after, .tooltip[data-placement="bottom"]:before {
 	bottom: 100%;
 	left: 50%;
 	border: solid transparent;
@@ -127,85 +127,85 @@
 	pointer-events: none;
 }
 
-.scite-tooltip[data-placement="bottom"]:after {
+.tooltip[data-placement="bottom"]:after {
 	border-color: rgba(255, 255, 255, 0);
 	border-bottom-color: #FFFFFF;
 	border-width: 10px;
 	margin-left: -10px;
 }
 
-.scite-tooltip[data-placement="bottom"]:before {
+.tooltip[data-placement="bottom"]:before {
 	border-color: rgba(235, 235, 235, 0);
 	border-bottom-color: #ebebeb;
 	border-width: 11px;
 	margin-left: -11px;
 }
 
-.scite-tooltip-reference {
+.tooltipReference {
     /* So it doesn't get wider than the badge itself
      * based on the width of the container */
     width: 75px;
 }
 
-.scite-tooltip-content {
+.tooltipContent {
     font-size: 14px;
 }
 
-.scite-tooltip-content > .scite-slogan {
+.tooltipContent > .slogan {
     display: block;
     margin-top: 4px;
 }
 
-.scite-tooltip-content > .scite-tooltip-tally {
+.tooltipContent > .tally {
     margin-top: 12px;
 }
 
-.scite-tooltip-tally {
+.tooltipTally {
     line-height: 1.5;
 }
 
-.scite-tooltip-tally > .scite-tooltip-tally-inner {
+.tooltipTally > .tally {
     display: inline-block;
     width: 50px;
 }
 
 
-.scite-tooltip-tally > .scite-labels {
+.tooltipTally > .labels {
     display: inline-block;
 }
 
-.scite-tally-labels > .scite-label {
+.labels > .label {
     display: block;
     margin-left: 8px;
 }
 
-.scite-tooltip-content > .scite-button {
+.tooltipContent > .button {
     margin-top: 12px;
     font-weight: bold;
     font-size: 12px;
 }
 
-.scite-tooltip-message {
+.tooltipMessage {
     color: #828179;
 }
 
-.scite-tooltip-message > .scite-bold {
+.tooltipMessage > .bold {
     font-weight: bold;
     color: black;
 }
 
-.scite-link {
+.link {
     text-decoration: none;
     color: inherit;
     font-weight: inherit;
     transition: 200ms opacity ease-in-out;
 }
 
-.scite-link:hover {
+.link:hover {
     opacity: 0.8;
 }
 
-.scite-button {
+.button {
     display: inline-block;
     background-color: #007aff;;
 
@@ -219,6 +219,6 @@
     transition: background-color 200ms ease-in-out;
 }
 
-.scite-button:hover {
+.button:hover {
     background-color: #4da3ff;
 }
