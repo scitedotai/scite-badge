@@ -6,15 +6,15 @@ import '../styles/Tooltip.css'
 
 const TooltipTally = ({ className, tally }) => (
   <div className={classNames('scite-tooltip-tally', className)}>
-    <div className='tally'>
-      <Count className='count' type='supporting' count={tally ? tally.supporting : 0} />
-      <Count className='count' type='mentioning' count={tally ? tally.mentioning : 0} />
-      <Count className='count' type='contradicting' count={tally ? tally.contradicting : 0} />
+    <div className='scite-tooltip-tally-inner'>
+      <Count className='scite-count' type='supporting' count={tally ? tally.supporting : 0} />
+      <Count className='scite-count' type='mentioning' count={tally ? tally.mentioning : 0} />
+      <Count className='scite-count' type='contradicting' count={tally ? tally.contradicting : 0} />
     </div>
-    <div className='scite-tally-labels labels'>
-      <span className='label'>Supporting</span>
-      <span className='label'>Mentioning</span>
-      <span className='label'>Contradicting</span>
+    <div className='scite-tally-labels scite-labels'>
+      <span className='scite-label'>Supporting</span>
+      <span className='scite-label'>Mentioning</span>
+      <span className='scite-label'>Contradicting</span>
     </div>
   </div>
 )
@@ -27,8 +27,8 @@ const Link = ({ className, href, children }) => (
 
 const TooltipMessage = ({ className }) => (
   <div className={classNames('scite-tooltip-message', className)}>
-    <p className='bold'>
-      see all citations for the article at <Link className='link' href='https://scite.ai'>scite.ai</Link>
+    <p className='scite-bold'>
+      see all citations for the article at <Link href='https://scite.ai'>scite.ai</Link>
     </p>
     <p>
       scite is a platform that combines deep learning with expert
@@ -41,11 +41,11 @@ const TooltipMessage = ({ className }) => (
 const TooltipContent = ({ tally }) => (
   <div className='scite-tooltip-content'>
     <TextLogo />
-    <span className='slogan'>Citation Statements</span>
+    <span className='scite-slogan'>Citation Statements</span>
 
-    <TooltipTally className='tally' tally={tally} />
-    {tally && <a className='scite-button button' href={`https://scite.ai/reports/${tally.doi}`} target='_blank' rel='noopener noreferrer'>View Citations</a>}
-    <TooltipMessage className='message' />
+    <TooltipTally className='scite-tooltip-tally' tally={tally} />
+    {tally && <a className='scite-button' href={`https://scite.ai/reports/${tally.doi}`} target='_blank' rel='noopener noreferrer'>View Citations</a>}
+    <TooltipMessage />
   </div>
 )
 
@@ -101,7 +101,10 @@ export const Tooltip = ({ tally, children }) => {
         )}
       </Reference>
 
-      <Popper>
+      <Popper
+        placement='top'
+        modifiers={{ preventOverflow: { enabled: false } }}
+      >
         {({ ref, style, placement, arrowProps, scheduleUpdate }) => {
           updatePosition = scheduleUpdate
 

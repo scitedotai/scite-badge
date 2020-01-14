@@ -151,12 +151,12 @@
     font-size: 14px;
 }
 
-.scite-tooltip-content > .slogan {
+.scite-tooltip-content > .scite-slogan {
     display: block;
     margin-top: 4px;
 }
 
-.scite-tooltip-content > .tally {
+.scite-tooltip-content > .scite-tooltip-tally {
     margin-top: 12px;
 }
 
@@ -164,22 +164,22 @@
     line-height: 1.5;
 }
 
-.scite-tooltip-tally > .tally {
+.scite-tooltip-tally > .scite-tooltip-tally-inner {
     display: inline-block;
     width: 50px;
 }
 
 
-.scite-tooltip-tally > .labels {
+.scite-tooltip-tally > .scite-labels {
     display: inline-block;
 }
 
-.scite-tally-labels > .label {
+.scite-tally-labels > .scite-label {
     display: block;
     margin-left: 8px;
 }
 
-.scite-tooltip-content > .button {
+.scite-tooltip-content > .scite-button {
     margin-top: 12px;
     font-weight: bold;
     font-size: 12px;
@@ -189,7 +189,7 @@
     color: #828179;
 }
 
-.scite-tooltip-message > .bold {
+.scite-tooltip-message > .scite-bold {
     font-weight: bold;
     color: black;
 }

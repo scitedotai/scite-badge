@@ -13,3 +13,10 @@
     min-height: 0px;
     max-height: 32px;
 }
+
+.badges {
+    overflow: scroll;
+    width: 200px;
+    height: 600px;
+    margin-left: 400px;
+}
