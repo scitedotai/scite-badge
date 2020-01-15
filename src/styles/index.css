@@ -15,8 +15,9 @@
 }
 
 :global(.badges) {
-    overflow: scroll;
-    width: 200px;
-    height: 600px;
-    margin-left: 400px;
+    width: 33%;
+}
+:global(.badge-row) {
+    display: flex;
+    margin-top: 2rem;
 }
