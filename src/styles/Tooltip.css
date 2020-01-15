@@ -1,5 +1,6 @@
 .tooltip {
     font-family: "Circular";
+    font-size: 16px;
 
     opacity: 0;
     pointer-events: none;
@@ -141,7 +142,7 @@
 	margin-left: -11px;
 }
 
-.tooltipReference {
+.reference {
     /* So it doesn't get wider than the badge itself
      * based on the width of the container */
     width: 75px;
@@ -151,45 +152,41 @@
     font-size: 14px;
 }
 
-.tooltipContent > .slogan {
+.slogan {
     display: block;
     margin-top: 4px;
 }
 
-.tooltipContent > .tally {
-    margin-top: 12px;
-}
-
-.tooltipTally {
+.tally {
     line-height: 1.5;
 }
 
-.tooltipTally > .tally {
+.tallyCounts {
     display: inline-block;
     width: 50px;
+    margin-top: 12px;
 }
 
-
-.tooltipTally > .labels {
+.labels {
     display: inline-block;
 }
 
-.labels > .label {
+.label {
     display: block;
     margin-left: 8px;
 }
 
-.tooltipContent > .button {
+.button {
     margin-top: 12px;
     font-weight: bold;
     font-size: 12px;
 }
 
-.tooltipMessage {
+.message {
     color: #828179;
 }
 
-.tooltipMessage > .bold {
+.bold {
     font-weight: bold;
     color: black;
 }
@@ -201,7 +198,7 @@
     transition: 200ms opacity ease-in-out;
 }
 
-.link:hover {
+.link:hover, .link:active {
     opacity: 0.8;
 }
 

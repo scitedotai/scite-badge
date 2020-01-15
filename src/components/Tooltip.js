@@ -4,9 +4,9 @@ import { Manager, Reference, Popper } from 'react-popper'
 import { Count, TextLogo } from 'scite-widget'
 import styles from '../styles/Tooltip.css'
 
-const TooltipTally = ({ className, tally }) => (
-  <div className={classNames(styles.tooltipTally, className)}>
-    <div className={styles.tally}>
+const Tally = ({ className, tally }) => (
+  <div className={classNames(styles.tally, className)}>
+    <div className={styles.tallyCounts}>
       <Count type='supporting' count={tally ? tally.supporting : 0} />
       <Count type='mentioning' count={tally ? tally.mentioning : 0} />
       <Count type='contradicting' count={tally ? tally.contradicting : 0} />
@@ -25,8 +25,8 @@ const Link = ({ className, href, children }) => (
   </a>
 )
 
-const TooltipMessage = ({ className }) => (
-  <div className={classNames(styles.tooltipMessage, className)}>
+const Message = ({ className }) => (
+  <div className={classNames(styles.message, className)}>
     <p className={styles.bold}>
       see all citations for the article at <Link href='https://scite.ai'>scite.ai</Link>
     </p>
@@ -43,9 +43,9 @@ const TooltipContent = ({ tally }) => (
     <TextLogo />
     <span className={styles.slogan}>Citation Statements</span>
 
-    <TooltipTally className={styles.tooltipTally} tally={tally} />
+    <Tally tally={tally} />
     {tally && <a className={styles.button} href={`https://scite.ai/reports/${tally.doi}`} target='_blank' rel='noopener noreferrer'>View Citations</a>}
-    <TooltipMessage />
+    <Message />
   </div>
 )
 
@@ -91,7 +91,7 @@ export const Tooltip = ({ tally, children }) => {
       <Reference>
         {({ ref }) => (
           <div
-            className={styles.tooltipReference}
+            className={styles.reference}
             ref={ref}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
