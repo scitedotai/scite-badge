@@ -2,32 +2,32 @@ import React, { useState, useEffect } from 'react'
 import classNames from 'classnames'
 import { Manager, Reference, Popper } from 'react-popper'
 import { Count, TextLogo } from 'scite-widget'
-import '../styles/Tooltip.css'
+import styles from '../styles/Tooltip.css'
 
-const TooltipTally = ({ className, tally }) => (
-  <div className={classNames('scite-tooltip-tally', className)}>
-    <div className='scite-tooltip-tally-inner'>
-      <Count className='scite-count' type='supporting' count={tally ? tally.supporting : 0} />
-      <Count className='scite-count' type='mentioning' count={tally ? tally.mentioning : 0} />
-      <Count className='scite-count' type='contradicting' count={tally ? tally.contradicting : 0} />
+const Tally = ({ className, tally }) => (
+  <div className={classNames(styles.tally, className)}>
+    <div className={styles.tallyCounts}>
+      <Count type='supporting' count={tally ? tally.supporting : 0} />
+      <Count type='mentioning' count={tally ? tally.mentioning : 0} />
+      <Count type='contradicting' count={tally ? tally.contradicting : 0} />
     </div>
-    <div className='scite-tally-labels scite-labels'>
-      <span className='scite-label'>Supporting</span>
-      <span className='scite-label'>Mentioning</span>
-      <span className='scite-label'>Contradicting</span>
+    <div className={styles.labels}>
+      <span className={styles.label}>Supporting</span>
+      <span className={styles.label}>Mentioning</span>
+      <span className={styles.label}>Contradicting</span>
     </div>
   </div>
 )
 
 const Link = ({ className, href, children }) => (
-  <a className={classNames('scite-link', className)} href={href} target='_blank' rel='noopener noreferrer'>
+  <a className={classNames(styles.link, className)} href={href} target='_blank' rel='noopener noreferrer'>
     {children}
   </a>
 )
 
-const TooltipMessage = ({ className }) => (
-  <div className={classNames('scite-tooltip-message', className)}>
-    <p className='scite-bold'>
+const Message = ({ className }) => (
+  <div className={classNames(styles.message, className)}>
+    <p className={styles.bold}>
       see all citations for the article at <Link href='https://scite.ai'>scite.ai</Link>
     </p>
     <p>
@@ -39,13 +39,13 @@ const TooltipMessage = ({ className }) => (
 )
 
 const TooltipContent = ({ tally }) => (
-  <div className='scite-tooltip-content'>
+  <div className={styles.tooltipContent}>
     <TextLogo />
-    <span className='scite-slogan'>Citation Statements</span>
+    <span className={styles.slogan}>Citation Statements</span>
 
-    <TooltipTally className='scite-tooltip-tally' tally={tally} />
-    {tally && <a className='scite-button' href={`https://scite.ai/reports/${tally.doi}`} target='_blank' rel='noopener noreferrer'>View Citations</a>}
-    <TooltipMessage />
+    <Tally tally={tally} />
+    {tally && <a className={styles.button} href={`https://scite.ai/reports/${tally.doi}`} target='_blank' rel='noopener noreferrer'>View Citations</a>}
+    <Message />
   </div>
 )
 
@@ -78,8 +78,8 @@ export const Tooltip = ({ tally, children }) => {
   }
 
   const classes = {
-    tooltip: classNames('scite-tooltip', {
-      '-show': showTooltip
+    tooltip: classNames(styles.tooltip, {
+      [styles.tooltipShow]: showTooltip
     })
   }
 
@@ -91,7 +91,7 @@ export const Tooltip = ({ tally, children }) => {
       <Reference>
         {({ ref }) => (
           <div
-            className='scite-tooltip-reference'
+            className={styles.reference}
             ref={ref}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}

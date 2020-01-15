@@ -1,4 +1,4 @@
-.scite-badge .scite-tally {
+:global(.scite-badge .scite-tally) {
     width: 75px;
     border-radius: 8px;
     border: 1px solid #cfcfcf;
@@ -8,15 +8,16 @@
     box-sizing: border-box;
 }
 
-.scite-badge[data-layout='horizontal'] .scite-tally {
+:global(.scite-badge[data-layout='horizontal'] .scite-tally) {
     width: 185px;
     min-height: 0px;
     max-height: 32px;
 }
 
-.badges {
-    overflow: scroll;
-    width: 200px;
-    height: 600px;
-    margin-left: 400px;
+:global(.badges) {
+    width: 33%;
+}
+:global(.badge-row) {
+    display: flex;
+    margin-top: 2rem;
 }
