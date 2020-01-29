@@ -49,7 +49,7 @@ const TooltipContent = ({ tally }) => (
   </div>
 )
 
-export const Tooltip = ({ tally, children }) => {
+export const Tooltip = ({ tally, showZero, children }) => {
   const [showTooltip, setShowTooltip] = useState(false)
   let hideTooltipIntvl
   let showTooltipIntvl
@@ -79,7 +79,7 @@ export const Tooltip = ({ tally, children }) => {
 
   const classes = {
     tooltip: classNames(styles.tooltip, {
-      [styles.tooltipShow]: showTooltip
+      [styles.tooltipShow]: showTooltip && !(tally && tally.total === 0 && !showZero)
     })
   }
 

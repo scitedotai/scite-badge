@@ -1,5 +1,5 @@
 import React from 'react'
-import { render } from 'react-dom'
+import { render, unmountComponentAtNode } from 'react-dom'
 import { Tally, TallyLoader } from 'scite-widget'
 import Tooltip from './components/Tooltip'
 import 'scite-widget/lib/main.css'
@@ -10,12 +10,14 @@ function insertBadges () {
   for (const badge of badges) {
     const data = badge.dataset
     const showZero = data.showZero === 'true'
-    badge.innerHTML = ''
+
+    unmountComponentAtNode(badge)
+
     render(
       (
         <TallyLoader doi={data.doi}>
           {({ tally }) => (
-            <Tooltip tally={tally}>
+            <Tooltip tally={tally} showZero={showZero}>
               <Tally
                 tally={tally}
                 horizontal={data.layout === 'horizontal'}
