@@ -12,6 +12,7 @@ function insertBadges () {
     const showZero = data.showZero === 'true'
     const horizontal = data.layout === 'horizontal'
     const placement = data.tooltipPlacement || 'top'
+    const showLabels = data.showLabels === 'true'
 
     unmountComponentAtNode(badge)
 
@@ -24,6 +25,7 @@ function insertBadges () {
                 tally={tally}
                 horizontal={horizontal}
                 showZero={showZero}
+                showLabels={showLabels}
                 isBadge
               />
             </Tooltip>

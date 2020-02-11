@@ -3,11 +3,11 @@ import { render } from 'react-dom'
 
 const rows = [
   {
-    doi: '10.1016/j.biopsych.2005.08.012',
+    doi: '10.1891/0889-8391.13.2.158',
     layout: 'horizontal'
   },
   {
-    doi: '10.1016/j.biopsych.2005.08.012',
+    doi: '10.1891/0889-8391.13.2.158',
     layout: 'vertical'
   },
   {
@@ -45,6 +45,7 @@ const Row = ({ doi, layout }) => (
       className='scite-badge'
       data-doi={doi}
       data-layout={layout}
+      data-show-labels='true'
     />
   </div>
 )

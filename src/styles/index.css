@@ -1,23 +1,29 @@
 :global(.scite-badge .scite-tally) {
-    width: 75px;
     border-radius: 8px;
     border: 1px solid #cfcfcf;
-    overflow: hidden;
     min-height: 120px;
 
     box-sizing: border-box;
 }
 
+:global(.scite-badge[data-show-labels='true'] .scite-tally) {
+}
+
 :global(.scite-badge[data-layout='horizontal'] .scite-tally) {
-    width: 185px;
     min-height: 0px;
     max-height: 32px;
 }
 
 :global(.badges) {
-    width: 33%;
+    width: 45rem;
+    margin: 0 auto;
 }
 :global(.badge-row) {
     display: flex;
     margin-top: 2rem;
+}
+
+:global(.paper) {
+    margin: 0;
+    padding: 0 1rem;
 }

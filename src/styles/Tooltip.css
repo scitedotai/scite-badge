@@ -145,7 +145,6 @@
 .reference {
     /* So it doesn't get wider than the badge itself
      * based on the width of the container */
-    width: 75px;
 }
 
 .tooltipContent {
@@ -163,7 +162,6 @@
 
 .tallyCounts {
     display: inline-block;
-    width: 50px;
     margin-top: 12px;
 }
 
