@@ -49,7 +49,7 @@ const TooltipContent = ({ tally }) => (
   </div>
 )
 
-export const Tooltip = ({ tally, showZero, children }) => {
+export const Tooltip = ({ tally, showZero, placement = 'top', children }) => {
   const [showTooltip, setShowTooltip] = useState(false)
   let hideTooltipIntvl
   let showTooltipIntvl
@@ -102,7 +102,7 @@ export const Tooltip = ({ tally, showZero, children }) => {
       </Reference>
 
       <Popper
-        placement='top'
+        placement={placement}
         modifiers={{ preventOverflow: { enabled: false } }}
       >
         {({ ref, style, placement, arrowProps, scheduleUpdate }) => {

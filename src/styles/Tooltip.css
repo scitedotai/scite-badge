@@ -27,19 +27,19 @@
 }
 
 .tooltip[data-placement="top"] {
-    margin-bottom: 2px;
+    margin-bottom: 5px;
 }
 
 .tooltip[data-placement="left"] {
-    margin-right: 2px;
+    margin-right: 5px;
 }
 
 .tooltip[data-placement="right"] {
-    margin-left: 2px;
+    margin-left: 5px;
 }
 
 .tooltip[data-placement="bottom"] {
-    margin-top: 2px;
+    margin-top: 5px;
 }
 
 .tooltip[data-placement="top"]:after, .tooltip[data-placement="top"]:before {

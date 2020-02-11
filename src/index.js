@@ -10,6 +10,8 @@ function insertBadges () {
   for (const badge of badges) {
     const data = badge.dataset
     const showZero = data.showZero === 'true'
+    const horizontal = data.layout === 'horizontal'
+    const placement = data.tooltipPlacement || 'top'
 
     unmountComponentAtNode(badge)
 
@@ -17,10 +19,10 @@ function insertBadges () {
       (
         <TallyLoader doi={data.doi}>
           {({ tally }) => (
-            <Tooltip tally={tally} showZero={showZero}>
+            <Tooltip tally={tally} showZero={showZero} placement={placement}>
               <Tally
                 tally={tally}
-                horizontal={data.layout === 'horizontal'}
+                horizontal={horizontal}
                 showZero={showZero}
                 isBadge
               />
