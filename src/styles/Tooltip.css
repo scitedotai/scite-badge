@@ -216,4 +216,8 @@
 
 .button:hover {
     background-color: #4da3ff;
+
+    /* For (a) site(s) that specifies a:hover color to be inherit */
+    color: white;
+
 }
