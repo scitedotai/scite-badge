@@ -1,0 +1,28 @@
+.badges {
+    width: 45rem;
+    margin: 0 auto;
+}
+
+.badge-row {
+    display: flex;
+    margin-top: 2rem;
+}
+
+.paper {
+    margin: 0;
+    padding: 0 1rem;
+}
+
+.narrow {
+    position: relative;
+    width: 17rem;
+    height: 12rem;
+    margin: 0 auto;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.wide {
+    margin: 6rem auto;
+    width: 60rem;
+}
