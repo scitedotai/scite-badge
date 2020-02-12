@@ -18,6 +18,7 @@
     width: 45rem;
     margin: 0 auto;
 }
+
 :global(.badge-row) {
     display: flex;
     margin-top: 2rem;
@@ -26,4 +27,12 @@
 :global(.paper) {
     margin: 0;
     padding: 0 1rem;
+}
+
+:global(.narrow) {
+    width: 17rem;
+    height: 12rem;
+    margin: 0 auto;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
