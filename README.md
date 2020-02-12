@@ -16,7 +16,21 @@ To use simply include the Javascript and CSS styles on your page. All elements w
 
 `doi`: Target DOI
 
-`layout`: Either 'vertical' (default) or 'horizontal'
+`show-zero`: Whether to show the badge even if we have no cites (0 0 0 0) (default: `false`)
+
+`layout`: Either 'vertical' or 'horizontal' (default: `vertical`)
+
+`tooltip-placement`: Preferred tooltip placement (`left`, `right`, `top` or `bottom`) (default: `top`)
+
+`show-labels`: Whether to show tally labels (supporting, contradicting, mentioning) (default: `false`)
+
+## API ##
+
+By default the badges will load in after the page has loaded. To manually reload the badges run the function `insertBadges` is exposed:
+
+```
+window.__SCITE.insertBadges()
+```
 
 ## Release ##
 
