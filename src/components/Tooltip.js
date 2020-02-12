@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import classNames from 'classnames'
 import { Manager, Reference, Popper } from 'react-popper'
 import { Count, TextLogo } from 'scite-widget'
@@ -49,11 +50,57 @@ const TooltipContent = ({ tally }) => (
   </div>
 )
 
-export const Tooltip = ({ tally, showZero, placement = 'top', children }) => {
+const TooltipPopper = ({
+  className,
+  show,
+  doi,
+  tally,
+  placement,
+  handleMouseEnter,
+  handleMouseLeave
+}) => {
+  let updatePosition
+  // XXX: Hack to fix positioning on first load, sorry
+  useEffect(() => updatePosition && updatePosition(), [tally])
+
+  const handleClickTooltip = () => {
+    window.open(`https://scite.ai/reports/${doi}`)
+  }
+
+  return (
+    <Popper
+      placement={placement}
+      modifiers={{ preventOverflow: { enabled: false } }}
+    >
+      {({ ref, style, placement, arrowProps, scheduleUpdate }) => {
+        updatePosition = scheduleUpdate
+
+        return (
+          <div
+            ref={ref}
+            className={
+              classNames(styles.tooltip, {
+                [styles.tooltipShow]: show
+              })
+            }
+            style={style}
+            data-placement={placement}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            onClick={handleClickTooltip}
+          >
+            <TooltipContent tally={tally} />
+          </div>
+        )
+      }}
+    </Popper>
+  )
+}
+
+export const Tooltip = ({ doi, tally, showZero, placement = 'top', children }) => {
   const [showTooltip, setShowTooltip] = useState(false)
   let hideTooltipIntvl
   let showTooltipIntvl
-  let updatePosition
 
   const handleMouseEnter = () => {
     if (hideTooltipIntvl) {
@@ -73,18 +120,7 @@ export const Tooltip = ({ tally, showZero, placement = 'top', children }) => {
     }, 300)
   }
 
-  const handleClickTooltip = () => {
-    window.open(`https://scite.ai/reports/${tally.doi}`)
-  }
-
-  const classes = {
-    tooltip: classNames(styles.tooltip, {
-      [styles.tooltipShow]: showTooltip && !(tally && tally.total === 0 && !showZero)
-    })
-  }
-
-  // XXX: Hack to fix positioning on first load, sorry
-  useEffect(() => updatePosition && updatePosition(), [tally])
+  const tooltipWrapper = document.querySelector(`.scite-tooltip-wrapper[data-doi="${doi}"]`)
 
   return (
     <Manager>
@@ -100,29 +136,19 @@ export const Tooltip = ({ tally, showZero, placement = 'top', children }) => {
           </div>
         )}
       </Reference>
-
-      <Popper
-        placement={placement}
-        modifiers={{ preventOverflow: { enabled: false } }}
-      >
-        {({ ref, style, placement, arrowProps, scheduleUpdate }) => {
-          updatePosition = scheduleUpdate
-
-          return (
-            <div
-              ref={ref}
-              className={classes.tooltip}
-              style={style}
-              data-placement={placement}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-              onClick={handleClickTooltip}
-            >
-              <TooltipContent tally={tally} />
-            </div>
-          )
-        }}
-      </Popper>
+      {
+        createPortal(
+          <TooltipPopper
+            show={showTooltip && !(tally && tally.total === 0 && !showZero)}
+            doi={doi}
+            tally={tally}
+            placement={placement}
+            handleMouseEnter={handleMouseEnter}
+            handleMouseLeave={handleMouseLeave}
+          />,
+          tooltipWrapper
+        )
+      }
     </Manager>
   )
 }

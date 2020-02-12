@@ -30,6 +30,7 @@
 }
 
 :global(.narrow) {
+    position: relative;
     width: 17rem;
     height: 12rem;
     margin: 0 auto;

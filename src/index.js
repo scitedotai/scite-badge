@@ -7,8 +7,18 @@ import './styles/index.css'
 
 function insertBadges () {
   const badges = document.querySelectorAll('.scite-badge')
+  const tooltipsWrapper = document.createElement('div')
+  tooltipsWrapper.className = 'scite-tooltips-wrapper'
+
+  const currentWrapper = document.querySelector('.scite-tooltips-wrapper')
+  if (currentWrapper) {
+    document.body.removeChild(currentWrapper)
+  }
+  document.body.appendChild(tooltipsWrapper)
+
   for (const badge of badges) {
     const data = badge.dataset
+    const doi = data.doi
     const showZero = data.showZero === 'true'
     const horizontal = data.layout === 'horizontal'
     const placement = data.tooltipPlacement || 'top'
@@ -16,11 +26,16 @@ function insertBadges () {
 
     unmountComponentAtNode(badge)
 
+    const tooltipWrapper = document.createElement('div')
+    tooltipWrapper.className = 'scite-tooltip-wrapper'
+    tooltipWrapper.dataset.doi = doi
+    tooltipsWrapper.appendChild(tooltipWrapper)
+
     render(
       (
-        <TallyLoader doi={data.doi}>
+        <TallyLoader doi={doi}>
           {({ tally }) => (
-            <Tooltip tally={tally} showZero={showZero} placement={placement}>
+            <Tooltip doi={doi} tally={tally} showZero={showZero} placement={placement}>
               <Tally
                 tally={tally}
                 horizontal={horizontal}
