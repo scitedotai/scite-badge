@@ -56,6 +56,7 @@ const TooltipPopper = ({
   doi,
   tally,
   placement,
+  flip,
   handleMouseEnter,
   handleMouseLeave
 }) => {
@@ -70,7 +71,10 @@ const TooltipPopper = ({
   return (
     <Popper
       placement={placement}
-      modifiers={{ preventOverflow: { enabled: false } }}
+      modifiers={{
+        preventOverflow: { enabled: false },
+        flip: { enabled: flip }
+      }}
     >
       {({ ref, style, placement, arrowProps, scheduleUpdate }) => {
         updatePosition = scheduleUpdate
@@ -97,7 +101,7 @@ const TooltipPopper = ({
   )
 }
 
-export const Tooltip = ({ doi, tally, showZero, placement = 'top', children }) => {
+export const Tooltip = ({ doi, tally, showZero, placement = 'top', flip, children }) => {
   const [showTooltip, setShowTooltip] = useState(false)
   let hideTooltipIntvl
   let showTooltipIntvl
@@ -143,6 +147,7 @@ export const Tooltip = ({ doi, tally, showZero, placement = 'top', children }) =
             doi={doi}
             tally={tally}
             placement={placement}
+            flip={flip}
             handleMouseEnter={handleMouseEnter}
             handleMouseLeave={handleMouseLeave}
           />,

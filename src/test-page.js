@@ -61,8 +61,8 @@ const App = () => (
   <div>
     <div className='badges'>
       {
-        rows.map(({ doi, layout, showLabels, placement }, id) => (
-          <Row key={id} doi={doi} layout={layout} showLabels={showLabels} placement={placement || 'top'} />
+        rows.map((props, id) => (
+          <Row key={id} {...props} />
         ))
       }
     </div>
