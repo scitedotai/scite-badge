@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "parcel build src/index.js --no-source-maps -o scite-badge-$(git describe --always).min.js",
-    "upload": "./scripts/upload.sh",
+    "upload": "node ./scripts/upload.js",
     "dev": "parcel src/index.js src/test-page.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -23,6 +23,8 @@
     "@babel/core": "^7.7.5",
     "@babel/plugin-transform-react-jsx": "^7.7.4",
     "autoprefixer": "^9.7.4",
+    "aws-sdk": "^2.626.0",
+    "mime-types": "^2.1.26",
     "parcel-bundler": "^1.12.4",
     "postcss-modules": "^1.5.0"
   }
