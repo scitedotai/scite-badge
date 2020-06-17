@@ -22,7 +22,7 @@ To use simply include the Javascript and CSS styles on your page. All elements w
 
 `tooltip-placement`: Preferred tooltip placement (`left`, `right`, `top` or `bottom`) (default: `top`)
 
-`show-labels`: Whether to show tally labels (supporting, contradicting, mentioning) (default: `false`)
+`show-labels`: Whether to show tally labels (supporting, disputing, mentioning) (default: `false`)
 
 ## API ##
 

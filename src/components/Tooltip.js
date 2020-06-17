@@ -10,12 +10,12 @@ const Tally = ({ className, tally }) => (
     <div className={styles.tallyCounts}>
       <Count type='supporting' count={tally ? tally.supporting : 0} />
       <Count type='mentioning' count={tally ? tally.mentioning : 0} />
-      <Count type='contradicting' count={tally ? tally.contradicting : 0} />
+      <Count type='disputing' count={tally ? tally.contradicting : 0} />
     </div>
     <div className={styles.labels}>
       <span className={styles.label}>Supporting</span>
       <span className={styles.label}>Mentioning</span>
-      <span className={styles.label}>Contradicting</span>
+      <span className={styles.label}>Disputing</span>
     </div>
   </div>
 )
@@ -34,7 +34,7 @@ const Message = ({ className }) => (
     <p>
       scite is a platform that combines deep learning with expert
       analysis to automatically classify citations as supporting,
-      contradicting or mentioning.
+      disputing or mentioning.
     </p>
   </div>
 )
