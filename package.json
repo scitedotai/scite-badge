@@ -7,25 +7,48 @@
     "build": "parcel build src/index.js --no-source-maps -o scite-badge-$(git describe --always).min.js",
     "upload": "node ./scripts/upload.js",
     "dev": "parcel src/index.js src/test-page.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "standard --verbose | snazzy",
+    "lint:fix": "standard --fix | snazzy",
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "author": "Milo Mordaunt <milomord@gmail.com>",
   "license": "ISC",
+  "pre-commit": [
+    "lint",
+    "test"
+  ],
   "dependencies": {
+    "@popperjs/core": "^2.4.4",
     "classnames": "^2.2.6",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-popper": "^1.3.7",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-popper": "^2.2.3",
     "scite-widget": "github:scitedotai/scite-widget#master",
-    "whatwg-fetch": "^3.0.0"
+    "whatwg-fetch": "^3.2.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.7.5",
-    "@babel/plugin-transform-react-jsx": "^7.7.4",
-    "autoprefixer": "^9.7.4",
-    "aws-sdk": "^2.626.0",
-    "mime-types": "^2.1.26",
+    "@babel/core": "^7.10.5",
+    "@babel/plugin-transform-react-jsx": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-react": "^7.10.4",
+    "autoprefixer": "^9.8.5",
+    "aws-sdk": "^2.715.0",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^26.1.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^26.1.0",
+    "mime-types": "^2.1.27",
     "parcel-bundler": "^1.12.4",
-    "postcss-modules": "^1.5.0"
+    "postcss-modules": "^3.2.0",
+    "pre-commit": "^1.2.2",
+    "snazzy": "^8.0.0",
+    "standard": "^14.3.4"
+  },
+  "standard": {
+    "parser": "babel-eslint",
+    "ignore": [
+      "dist"
+    ]
   }
 }
