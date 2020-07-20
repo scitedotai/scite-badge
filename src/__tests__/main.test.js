@@ -18,7 +18,7 @@ describe('getConfig', () => {
     el.dataset.layout = 'horizontal'
     el.dataset.tooltipPlacement = 'bottom'
     el.dataset.showLabels = 'true'
-    el.dataset.appendTo = '.my-container'
+    el.dataset.targetEl = '.my-container'
     el.dataset.insertBefore = 'false'
 
     const config = main.getConfig(el)
@@ -27,7 +27,7 @@ describe('getConfig', () => {
     expect(config.horizontal).toBe(true)
     expect(config.placement).toBe('bottom')
     expect(config.showLabels).toBe(true)
-    expect(config.appendTo).toBe('.my-container')
+    expect(config.targetEl).toBe('.my-container')
     expect(config.insertBefore).toBe(false)
   })
 })
@@ -62,7 +62,7 @@ describe('insertBadgeWrapper', () => {
     document.body.appendChild(myContainer)
 
     const myConfig = document.createElement('div')
-    myConfig.dataset.appendTo = '.my-container'
+    myConfig.dataset.targetEl = '.my-container'
     myConfig.dataset.doi = '10.bingbong'
 
     main.insertBadgeWrapper(myConfig)
@@ -89,7 +89,7 @@ describe('insertBadgeWrapper', () => {
     document.body.appendChild(myContainer)
 
     const myConfig = document.createElement('div')
-    myConfig.dataset.appendTo = '.my-container > .node-2'
+    myConfig.dataset.targetEl = '.my-container > .node-2'
     myConfig.dataset.insertBefore = 'true'
     myConfig.dataset.doi = '10.bingbong'
 

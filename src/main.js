@@ -29,8 +29,8 @@ export function getConfig (el) {
     config.showLabels = data.showLabels === 'true'
   }
 
-  if (data.appendTo) {
-    config.appendTo = data.appendTo
+  if (data.targetEl) {
+    config.targetEl = data.targetEl
   }
 
   if (data.insertBefore) {
@@ -98,9 +98,9 @@ export function replaceTooltipsWrapper (className = 'scite-tooltips-wrapper') {
  * If the user cannot insert a div with config/class
  * we want, insert the wrapper ourselves as an escape hatch */
 export function insertBadgeWrapper (configEl) {
-  const { appendTo, insertBefore } = getConfig(configEl)
+  const { targetEl, insertBefore } = getConfig(configEl)
 
-  const el = document.querySelector(appendTo)
+  const el = document.querySelector(targetEl)
   const badgeWrapper = document.createElement('div')
   badgeWrapper.className = 'scite-badge'
 
