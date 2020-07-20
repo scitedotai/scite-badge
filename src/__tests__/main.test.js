@@ -32,33 +32,21 @@ describe('getConfig', () => {
   })
 })
 
-describe('defaultBoolConfig', () => {
-  it('defaults correctly when there is no value', () => {
-    expect(main.defaultBoolConfig('showZero', {}, {})).toBe(false)
-  })
-
-  it('overrides global with local config', () => {
-    expect(main.defaultBoolConfig('showZero', { showZero: true }, { showZero: false })).toBe(true)
-    expect(main.defaultBoolConfig('showZero', { showZero: false }, { showZero: true })).toBe(false)
-    expect(main.defaultBoolConfig('showZero', { showZero: true }, {})).toBe(true)
-  })
-
-  it('falls back to global config', () => {
-    expect(main.defaultBoolConfig('showZero', {}, { showZero: true })).toBe(true)
-    expect(main.defaultBoolConfig('showZero', {}, { showZero: false })).toBe(false)
-  })
-})
-
 describe('insertBadgeWrapper', () => {
   it('inserts badge into specified element', () => {
     const myContainer = document.createElement('div')
     myContainer.className = 'my-container'
     document.body.appendChild(myContainer)
 
-    main.insertBadgeWrapper('.my-container')
+    const myConfig = document.createElement('div')
+    myConfig.dataset.appendTo = '.my-container'
+    myConfig.dataset.doi = '10.bingbong'
+
+    main.insertBadgeWrapper(myConfig)
 
     expect(myContainer.children.length).toBe(1)
     expect(myContainer.children[0].className).toBe('scite-badge')
+    expect(myContainer.children[0].dataset.doi).toBe('10.bingbong')
 
     document.body.removeChild(myContainer)
   })
@@ -77,11 +65,17 @@ describe('insertBadgeWrapper', () => {
     myContainer.appendChild(node2)
     document.body.appendChild(myContainer)
 
-    main.insertBadgeWrapper('.my-container > .node-2', true)
+    const myConfig = document.createElement('div')
+    myConfig.dataset.appendTo = '.my-container > .node-2'
+    myConfig.dataset.insertBefore = 'true'
+    myConfig.dataset.doi = '10.bingbong'
+
+    main.insertBadgeWrapper(myConfig)
 
     expect(myContainer.children.length).toBe(3)
     expect(myContainer.children[0].className).toBe('node-1')
     expect(myContainer.children[1].className).toBe('scite-badge')
+    expect(myContainer.children[1].dataset.doi).toBe('10.bingbong')
     expect(myContainer.children[2].className).toBe('node-2')
 
     document.body.removeChild(myContainer)

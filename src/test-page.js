@@ -59,7 +59,7 @@ const Row = ({ doi, layout, showLabels, placement }) => (
 
 const App = () => (
   <div>
-    <div className='scite-badge-config' data-append-to='.special-container > .foobar' data-insert-before='true' data-doi='10.1016/j.biopsych.2005.08.012' />
+    <div className='scite-badge-config' data-append-to='.special-container > .foobar' data-insert-before='true' data-doi='10.1016/j.biopsych.2005.08.012' data-tooltip-placement='right' />
 
     <div className='badges'>
       {

@@ -40,36 +40,18 @@ export function getConfig (el) {
   return config
 }
 
-/**
- * If the user specifies as false-y value on the local config
- * it should not fall back to the global, it should override it. */
-export function defaultBoolConfig (key, config, globalConfig, default_ = false) {
-  const localVal = config[key]
-  const globalVal = globalConfig[key]
-
-  if (typeof localVal === 'boolean') {
-    return localVal
-  }
-
-  if (typeof globalVal === 'boolean') {
-    return globalVal
-  }
-
-  return default_
-}
-
-export function insertBadge (el, tooltipsWrapper, globalConfig = {}) {
+export function insertBadge (el, tooltipsWrapper) {
   const config = getConfig(el)
-  const doi = config.doi || globalConfig.doi
-  const showZero = defaultBoolConfig('showZero', config, globalConfig)
-  const horizontal = defaultBoolConfig('horizontal', config, globalConfig)
-  const placement = config.tooltipPlacement || globalConfig.tooltipPlacement || 'top'
-  const showLabels = defaultBoolConfig('showLabels', config, globalConfig)
+  const doi = config.doi
+  const showZero = config.showZero || false
+  const horizontal = config.horizontal || false
+  const placement = config.placement || 'top'
+  const showLabels = config.showLabels || false
 
   //
   // Don't ever flip tooltip if they specify placement
   //
-  const flip = !(config.tooltipPlacement || globalConfig.tooltipPlacement)
+  const flip = !config.placement
 
   unmountComponentAtNode(el)
 
@@ -114,10 +96,20 @@ export function replaceTooltipsWrapper (className = 'scite-tooltips-wrapper') {
 /**
  * If the user cannot insert a div with config/class
  * we want, insert the wrapper ourselves as an escape hatch */
-export function insertBadgeWrapper (selector, insertBefore = false) {
-  const el = document.querySelector(selector)
+export function insertBadgeWrapper (configEl) {
+  const { appendTo, insertBefore } = getConfig(configEl)
+
+  const el = document.querySelector(appendTo)
   const badgeWrapper = document.createElement('div')
   badgeWrapper.className = 'scite-badge'
+
+  //
+  // Forward config to element
+  //
+  const configKeys = Object.keys(configEl.dataset)
+  for (const key of configKeys) {
+    badgeWrapper.dataset[key] = configEl.dataset[key]
+  }
 
   if (!el) {
     console.warn('Scite badge: could not find element to insert badge wrapper into')
@@ -134,18 +126,16 @@ export function insertBadgeWrapper (selector, insertBefore = false) {
 }
 
 export function insertBadges () {
-  const globalConfigEl = document.querySelector('.scite-badge-config')
-  const globalConfig = globalConfigEl ? getConfig(globalConfigEl) : {}
-
-  if (globalConfig.appendTo) {
-    insertBadgeWrapper(globalConfig.appendTo, globalConfig.insertBefore)
+  const configEls = document.querySelectorAll('.scite-badge-config')
+  for (const el of configEls) {
+    insertBadgeWrapper(el)
   }
 
   const badges = document.querySelectorAll('.scite-badge')
   const tooltipsWrapper = replaceTooltipsWrapper('scite-tooltips-wrapper')
 
   for (const badge of badges) {
-    insertBadge(badge, tooltipsWrapper, globalConfig)
+    insertBadge(badge, tooltipsWrapper)
   }
 
   return badges
