@@ -33,6 +33,10 @@ export function getConfig (el) {
     config.appendTo = data.appendTo
   }
 
+  if (data.insertBefore) {
+    config.insertBefore = data.insertBefore === 'true'
+  }
+
   return config
 }
 
@@ -134,7 +138,7 @@ export function insertBadges () {
   const globalConfig = globalConfigEl ? getConfig(globalConfigEl) : {}
 
   if (globalConfig.appendTo) {
-    insertBadgeWrapper(globalConfig.appendTo)
+    insertBadgeWrapper(globalConfig.appendTo, globalConfig.insertBefore)
   }
 
   const badges = document.querySelectorAll('.scite-badge')

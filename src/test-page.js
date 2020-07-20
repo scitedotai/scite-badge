@@ -59,6 +59,8 @@ const Row = ({ doi, layout, showLabels, placement }) => (
 
 const App = () => (
   <div>
+    <div className='scite-badge-config' data-append-to='.special-container > .foobar' data-insert-before='true' data-doi='10.1016/j.biopsych.2005.08.012' />
+
     <div className='badges'>
       {
         rows.map((props, id) => (
@@ -85,6 +87,11 @@ const App = () => (
         showLabels={false}
         placement='top'
       />
+    </div>
+
+    <div className='special-container'>
+      <div>Some random stuff they like</div>
+      <div className='foobar'>Some other random stuff they like</div>
     </div>
   </div>
 )

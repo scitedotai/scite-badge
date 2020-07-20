@@ -19,6 +19,7 @@ describe('getConfig', () => {
     el.dataset.tooltipPlacement = 'bottom'
     el.dataset.showLabels = 'true'
     el.dataset.appendTo = '.my-container'
+    el.dataset.insertBefore = 'false'
 
     const config = main.getConfig(el)
     expect(config.doi).toBe('10.bingbong')
@@ -27,6 +28,7 @@ describe('getConfig', () => {
     expect(config.placement).toBe('bottom')
     expect(config.showLabels).toBe(true)
     expect(config.appendTo).toBe('.my-container')
+    expect(config.insertBefore).toBe(false)
   })
 })
 
