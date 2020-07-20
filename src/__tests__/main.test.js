@@ -32,6 +32,29 @@ describe('getConfig', () => {
   })
 })
 
+describe('replaceTooltipsWrapper', () => {
+  it('can insert a new wrapper', () => {
+    const initialWrapper = document.querySelector('.scite-tooltips-wrapper')
+    main.replaceTooltipsWrapper('scite-tooltips-wrapper')
+    const newWrapper = document.querySelector('.scite-tooltips-wrapper')
+
+    expect(initialWrapper).toBeNull()
+    expect(newWrapper).toBeTruthy()
+    expect(newWrapper.className).toBe('scite-tooltips-wrapper')
+  })
+
+  it('can replace an existing wrapper', () => {
+    const initialWrapper = document.querySelector('.scite-tooltips-wrapper')
+    main.replaceTooltipsWrapper('scite-tooltips-wrapper')
+    const newWrapper = document.querySelector('.scite-tooltips-wrapper')
+
+    expect(initialWrapper).toBeTruthy()
+    expect(newWrapper).toBeTruthy()
+    expect(newWrapper.className).toBe('scite-tooltips-wrapper')
+    expect(newWrapper).not.toBe(initialWrapper)
+  })
+})
+
 describe('insertBadgeWrapper', () => {
   it('inserts badge into specified element', () => {
     const myContainer = document.createElement('div')
@@ -83,10 +106,12 @@ describe('insertBadgeWrapper', () => {
 })
 
 describe('main', () => {
-  const addEventListener = jest.spyOn(window, 'addEventListener')
+  it('runs on load if there are no badges', () => {
+    const addEventListener = jest.spyOn(window, 'addEventListener')
 
-  main.main()
+    main.main()
 
-  expect(addEventListener).toBeCalledTimes(1)
-  expect(addEventListener).toBeCalledWith('load', main.insertBadges)
+    expect(addEventListener).toBeCalledTimes(1)
+    expect(addEventListener).toBeCalledWith('load', main.insertBadges)
+  })
 })

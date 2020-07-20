@@ -76,7 +76,8 @@ export function insertBadge (el, tooltipsWrapper) {
         )}
       </TallyLoader>
     ),
-    el)
+    el
+  )
 }
 
 export function replaceTooltipsWrapper (className = 'scite-tooltips-wrapper') {
