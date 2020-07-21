@@ -30,6 +30,19 @@ describe('getConfig', () => {
     expect(config.targetEl).toBe('.my-container')
     expect(config.insertBefore).toBe(false)
   })
+
+  it('can load DOI from meta tag', () => {
+    const metaTag = document.createElement('meta')
+    metaTag.name = 'article_doi'
+    metaTag.content = '10.dingaling'
+    document.head.appendChild(metaTag)
+
+    const el = document.createElement('el')
+    el.dataset.doi = 'meta:article_doi'
+
+    const config = main.getConfig(el)
+    expect(config.doi).toBe('10.dingaling')
+  })
 })
 
 describe('replaceTooltipsWrapper', () => {

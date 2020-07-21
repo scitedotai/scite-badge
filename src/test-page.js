@@ -59,8 +59,10 @@ const Row = ({ doi, layout, showLabels, placement }) => (
 
 const App = () => (
   <div>
+    <meta name='article_doi' content='10.1891/0889-8391.13.2.158' />
+
     <div className='scite-badge-config' data-target-el='.special-container > .foobar' data-insert-before='true' data-doi='10.1016/j.biopsych.2005.08.012' data-tooltip-placement='right' />
-    <div className='scite-badge-config' data-target-el='.special-container' data-doi='10.1891/0889-8391.13.2.158' data-tooltip-placement='right' />
+    <div className='scite-badge-config' data-target-el='.special-container' data-doi='meta:article_doi' data-tooltip-placement='right' />
 
     <div className='badges'>
       {
