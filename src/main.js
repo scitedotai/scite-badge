@@ -127,6 +127,10 @@ export function insertBadgeWrapper (configEl) {
 }
 
 export function insertBadges () {
+  if (!document.body) {
+    return []
+  }
+
   const configEls = document.querySelectorAll('.scite-badge-config')
   for (const el of configEls) {
     insertBadgeWrapper(el)
