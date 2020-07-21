@@ -62,7 +62,11 @@ const TooltipPopper = ({
 }) => {
   let updatePosition
   // XXX: Hack to fix positioning on first load, sorry
-  useEffect(() => updatePosition && updatePosition(), [tally])
+  useEffect(() => {
+    if (updatePosition) {
+      setTimeout(updatePosition)
+    }
+  }, [tally])
 
   const handleClickTooltip = () => {
     window.open(`https://scite.ai/reports/${doi}`)
@@ -71,13 +75,29 @@ const TooltipPopper = ({
   return (
     <Popper
       placement={placement}
-      modifiers={{
-        preventOverflow: { enabled: false },
-        flip: { enabled: flip }
-      }}
+      modifiers={[
+        {
+          name: 'preventOverflow',
+          options: {
+            mainAxis: false
+          }
+        },
+        {
+          name: 'offset',
+          options: {
+            offset: [0, 12]
+          }
+        },
+        {
+          name: 'flip',
+          options: flip ? {} : {
+            fallbackPlacements: []
+          }
+        }
+      ]}
     >
-      {({ ref, style, placement, arrowProps, scheduleUpdate }) => {
-        updatePosition = scheduleUpdate
+      {({ ref, style, placement, arrowProps, update }) => {
+        updatePosition = update
 
         return (
           <div

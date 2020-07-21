@@ -14,7 +14,7 @@ To use simply include the Javascript and CSS styles on your page. All elements w
 
 ## Settings ##
 
-`doi`: Target DOI
+`doi`: Target DOI (required)
 
 `show-zero`: Whether to show the badge even if we have no cites (0 0 0 0) (default: `false`)
 
@@ -31,6 +31,16 @@ By default the badges will load in after the page has loaded. To manually reload
 ```
 window.__SCITE.insertBadges()
 ```
+
+## Advanced Usage ##
+
+If it is more convenient to configure the badges not inline where they will be injected but elsewhere on the page, you can use elements with the class `scite-badge-config` to describe your badges. These elements are configurable the same way as `scite-badge` elements but have two extra options:
+
+`target-el`: Selector for the element the badge should be injected into or by (see below) (required)
+
+`insert-before`: Whether the badge should be injected before the element (default: false)
+
+If `insert-before` is not set to `true` then the badge will be appended to the element specified as `target-el`. If `insert-before` is `true` then the badge will be inserted before the element specified by `target-el`.
 
 ## Release ##
 
