@@ -14,7 +14,7 @@ To use simply include the Javascript and CSS styles on your page. All elements w
 
 ## Settings ##
 
-`doi`: Target DOI (required)
+`doi`: Target DOI (required) (Can specify to pull from meta tag rather than hard code, see below)
 
 `show-zero`: Whether to show the badge even if we have no cites (0 0 0 0) (default: `false`)
 
@@ -23,6 +23,15 @@ To use simply include the Javascript and CSS styles on your page. All elements w
 `tooltip-placement`: Preferred tooltip placement (`left`, `right`, `top` or `bottom`) (default: `top`)
 
 `show-labels`: Whether to show tally labels (supporting, disputing, mentioning) (default: `false`)
+
+To pull the target DOI from a meta tag in the document rather than setting inline, you can use the syntax `meta:my_tag_name`. For example:
+
+```
+<meta name="article_doi" content="10.mydoi" />
+<div class="scite-badge" data-doi="meta:article_doi"></div>
+```
+
+Would use the DOI `10.mydoi`.
 
 ## API ##
 

@@ -9,7 +9,17 @@ export function getConfig (el) {
   const data = el.dataset
   const config = {}
 
-  if (data.doi) {
+  if (data.doi && /^meta:/.test(data.doi)) {
+    const metaName = data.doi.split('meta:').join('')
+    const selector = `meta[name='${metaName}']`
+    const meta = document.querySelector(selector)
+
+    if (meta) {
+      config.doi = meta.getAttribute('content')
+    } else {
+      console.warn(`Scite badge could not find meta tag with name="${metaName}"`)
+    }
+  } else if (data.doi) {
     config.doi = data.doi
   }
 
