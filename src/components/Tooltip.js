@@ -29,7 +29,7 @@ const Link = ({ className, href, children }) => (
 const Message = ({ className }) => (
   <div className={classNames(styles.message, className)}>
     <p className={styles.bold}>
-      see all citations for the article at <Link href='https://scite.ai'>scite.ai</Link>
+      see all citations for this article at <Link href='https://scite.ai'>scite.ai</Link>
     </p>
     <p>
       scite is a platform that combines deep learning with expert
