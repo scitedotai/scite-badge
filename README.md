@@ -22,7 +22,7 @@ To use simply include the Javascript and CSS styles on your page. All elements w
 
 `tooltip-placement`: Preferred tooltip placement (`left`, `right`, `top` or `bottom`) (default: `top`)
 
-`tooltip-slide`: Preferred tooltip position offset alonge edge in pixels (default: `0`, the center)
+`tooltip-slide`: Preferred tooltip position offset along edge in pixels (default: `0`, the center)
 
 `show-labels`: Whether to show tally labels (supporting, disputing, mentioning) (default: `false`)
 
