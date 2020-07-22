@@ -29,7 +29,7 @@ const Link = ({ className, href, children }) => (
 const Message = ({ className }) => (
   <div className={classNames(styles.message, className)}>
     <p className={styles.bold}>
-      see all citations for the article at <Link href='https://scite.ai'>scite.ai</Link>
+      see all citations for this article at <Link href='https://scite.ai'>scite.ai</Link>
     </p>
     <p>
       scite is a platform that combines deep learning with expert
@@ -57,6 +57,7 @@ const TooltipPopper = ({
   tally,
   placement,
   flip,
+  slide,
   handleMouseEnter,
   handleMouseLeave
 }) => {
@@ -85,7 +86,7 @@ const TooltipPopper = ({
         {
           name: 'offset',
           options: {
-            offset: [0, 12]
+            offset: [slide || 0, 12]
           }
         },
         {
@@ -121,7 +122,7 @@ const TooltipPopper = ({
   )
 }
 
-export const Tooltip = ({ doi, tally, showZero, placement = 'top', flip, children }) => {
+export const Tooltip = ({ doi, tally, showZero, placement = 'top', flip, slide = 0, children }) => {
   const [showTooltip, setShowTooltip] = useState(false)
   let hideTooltipIntvl
   let showTooltipIntvl
@@ -168,6 +169,7 @@ export const Tooltip = ({ doi, tally, showZero, placement = 'top', flip, childre
             tally={tally}
             placement={placement}
             flip={flip}
+            slide={slide}
             handleMouseEnter={handleMouseEnter}
             handleMouseLeave={handleMouseLeave}
           />,

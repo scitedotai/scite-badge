@@ -22,6 +22,8 @@ To use simply include the Javascript and CSS styles on your page. All elements w
 
 `tooltip-placement`: Preferred tooltip placement (`left`, `right`, `top` or `bottom`) (default: `top`)
 
+`tooltip-slide`: Preferred tooltip position offset along edge in pixels (default: `0`, the center)
+
 `show-labels`: Whether to show tally labels (supporting, disputing, mentioning) (default: `false`)
 
 To pull the target DOI from a meta tag in the document rather than setting inline, you can use the syntax `meta:my_tag_name`. For example:

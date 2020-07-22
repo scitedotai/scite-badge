@@ -35,6 +35,10 @@ export function getConfig (el) {
     config.placement = data.tooltipPlacement
   }
 
+  if (data.tooltipSlide) {
+    config.slide = Number(data.tooltipSlide)
+  }
+
   if (data.showLabels) {
     config.showLabels = data.showLabels === 'true'
   }
@@ -57,6 +61,7 @@ export function insertBadge (el, tooltipsWrapper) {
   const horizontal = config.horizontal || false
   const placement = config.placement || 'top'
   const showLabels = config.showLabels || false
+  const slide = config.slide || 0
 
   //
   // Don't ever flip tooltip if they specify placement
@@ -74,7 +79,14 @@ export function insertBadge (el, tooltipsWrapper) {
     (
       <TallyLoader doi={doi}>
         {({ tally }) => (
-          <Tooltip doi={doi} tally={tally} showZero={showZero} placement={placement} flip={flip}>
+          <Tooltip
+            doi={doi}
+            tally={tally}
+            showZero={showZero}
+            placement={placement}
+            flip={flip}
+            slide={slide}
+          >
             <Tally
               tally={tally}
               horizontal={horizontal}
