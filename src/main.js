@@ -54,7 +54,7 @@ export function getConfig (el) {
   return config
 }
 
-export function insertBadge (el, tooltipsWrapper) {
+export function insertBadge (el) {
   const config = getConfig(el)
   const doi = config.doi
   const showZero = config.showZero || false
@@ -69,11 +69,6 @@ export function insertBadge (el, tooltipsWrapper) {
   const flip = !config.placement
 
   unmountComponentAtNode(el)
-
-  const tooltipWrapper = document.createElement('div')
-  tooltipWrapper.className = 'scite-tooltip-wrapper'
-  tooltipWrapper.dataset.doi = doi
-  tooltipsWrapper.appendChild(tooltipWrapper)
 
   render(
     (
@@ -100,20 +95,6 @@ export function insertBadge (el, tooltipsWrapper) {
     ),
     el
   )
-}
-
-export function replaceTooltipsWrapper (className = 'scite-tooltips-wrapper') {
-  const tooltipsWrapper = document.createElement('div')
-  tooltipsWrapper.className = className
-
-  const currentWrapper = document.querySelector(`.${className}`)
-  if (currentWrapper) {
-    document.body.removeChild(currentWrapper)
-  }
-
-  document.body.appendChild(tooltipsWrapper)
-
-  return tooltipsWrapper
 }
 
 /**
@@ -159,10 +140,9 @@ export function insertBadges () {
   }
 
   const badges = document.querySelectorAll('.scite-badge')
-  const tooltipsWrapper = replaceTooltipsWrapper('scite-tooltips-wrapper')
 
   for (const badge of badges) {
-    insertBadge(badge, tooltipsWrapper)
+    insertBadge(badge)
   }
 
   return badges
