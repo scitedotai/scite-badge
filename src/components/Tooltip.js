@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { createPortal } from 'react-dom'
 import classNames from 'classnames'
 import { Manager, Reference, Popper } from 'react-popper'
 import { Count, TextLogo } from 'scite-widget'
@@ -76,6 +75,7 @@ const TooltipPopper = ({
   return (
     <Popper
       placement={placement}
+      strategy='fixed'
       modifiers={[
         {
           name: 'preventOverflow',
@@ -145,8 +145,6 @@ export const Tooltip = ({ doi, tally, showZero, placement = 'top', flip, slide =
     }, 300)
   }
 
-  const tooltipWrapper = document.querySelector(`.scite-tooltip-wrapper[data-doi="${doi}"]`)
-
   return (
     <Manager>
       <Reference>
@@ -161,21 +159,16 @@ export const Tooltip = ({ doi, tally, showZero, placement = 'top', flip, slide =
           </div>
         )}
       </Reference>
-      {
-        createPortal(
-          <TooltipPopper
-            show={showTooltip && !(tally && tally.total === 0 && !showZero)}
-            doi={doi}
-            tally={tally}
-            placement={placement}
-            flip={flip}
-            slide={slide}
-            handleMouseEnter={handleMouseEnter}
-            handleMouseLeave={handleMouseLeave}
-          />,
-          tooltipWrapper
-        )
-      }
+      <TooltipPopper
+        show={showTooltip && !(tally && tally.total === 0 && !showZero)}
+        doi={doi}
+        tally={tally}
+        placement={placement}
+        flip={flip}
+        slide={slide}
+        handleMouseEnter={handleMouseEnter}
+        handleMouseLeave={handleMouseLeave}
+      />
     </Manager>
   )
 }
