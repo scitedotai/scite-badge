@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import classNames from 'classnames'
 import { Manager, Reference, Popper } from 'react-popper'
-import { Count, TextLogo } from 'scite-widget'
+import { Count } from 'scite-widget'
 import styles from '../styles/Tooltip.css'
 
 const Tally = ({ className, tally }) => (
   <div className={classNames(styles.tally, className)}>
     <div className={styles.tallyCounts}>
-      <Count type='supporting' count={tally ? tally.supporting : 0} />
-      <Count type='mentioning' count={tally ? tally.mentioning : 0} />
-      <Count type='disputing' count={tally ? tally.contradicting : 0} />
+      <Count type='supporting' count={tally ? tally.supporting.toLocaleString() : 0} />
+      <Count type='mentioning' count={tally ? tally.mentioning.toLocaleString() : 0} />
+      <Count type='disputing' count={tally ? tally.contradicting.toLocaleString() : 0} />
     </div>
     <div className={styles.labels}>
       <span className={styles.label}>Supporting</span>
@@ -40,7 +40,7 @@ const Message = ({ className }) => (
 
 const TooltipContent = ({ tally }) => (
   <div className={styles.tooltipContent}>
-    <TextLogo />
+    <img className={styles.logo} src='https://cdn.scite.ai/assets/images/logo.svg' />
     <span className={styles.slogan}>Citation Statements</span>
 
     <Tally tally={tally} />

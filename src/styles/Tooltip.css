@@ -1,5 +1,5 @@
 .tooltip {
-    font-family: "Circular";
+    font-family: 'IBM Plex Sans', sans-serif;
     font-size: 16px;
 
     opacity: 0;
@@ -205,4 +205,10 @@
     /* For (a) site(s) that specifies a:hover color to be inherit */
     color: white;
 
+}
+
+.logo {
+  display: block;
+  margin-bottom: 8px;
+  width: 5em;
 }
