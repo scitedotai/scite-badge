@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 
 const rows = [
   {
-    doi: '10.1891/0889-8391.13.2.158',
+    doi: '10.1038/nature10167',
     layout: 'vertical',
     showLabels: true
   },
@@ -12,22 +12,22 @@ const rows = [
     layout: 'vertical'
   },
   {
-    doi: '10.1891/0889-8391.13.2.158',
+    doi: '10.1038/nature10167',
     layout: 'horizontal',
     showLabels: true
   },
   {
-    doi: '10.1891/0889-8391.13.2.158',
+    doi: '10.1038/nature10167',
     layout: 'horizontal',
     showLabels: false
   },
   {
-    doi: '10.1016/j.biopsych.2005.08.012',
+    doi: '10.1038/nature10167',
     layout: 'vertical',
     showLabels: false
   },
   {
-    doi: '10.1016/j.biopsych.2005.08.012',
+    doi: '10.1038/nature10167',
     layout: 'vertical',
     placement: 'left'
   }
@@ -91,7 +91,6 @@ const App = () => (
         placement='top'
       />
     </div>
-
     <div className='special-container'>
       <div>Some random stuff they like</div>
       <div className='foobar'>Some other random stuff they like</div>

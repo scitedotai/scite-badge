@@ -1,7 +1,7 @@
 {
   "name": "scite-badge",
   "version": "2.0.4",
-  "description": "Wrapper around scite-extension",
+  "description": "Wrapper around scite-widget",
   "main": "index.js",
   "scripts": {
     "build": "parcel build src/index.js --no-source-maps -o scite-badge-$(git describe --always).min.js",
@@ -24,7 +24,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-popper": "^2.2.3",
-    "scite-widget": "github:scitedotai/scite-widget#master",
+    "scite-widget": "github:scitedotai/scite-widget#GH-671/add-editorial-notices-to-tally-wdiget",
     "whatwg-fetch": "^3.2.0"
   },
   "devDependencies": {

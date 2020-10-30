@@ -1,6 +1,6 @@
 # Scite Badge #
 
-Thin wrapper around [scite browser extension](https://github.com/scitedotai/scite-extension) to allow embedding on pages.
+Thin wrapper around [scite widged](https://github.com/scitedotai/scite-widget) to allow embedding on pages.
 
 ## Example Usage ##
 
@@ -61,4 +61,12 @@ Releases are uploaded to Azure. To do a release run something like:
 $ git tag v1.2.0 -m "My cool new version"
 $ git push origin v1.2.0
 $ npm run build && npm run upload
+```
+
+## Local development ##
+
+```
+$ npm i
+$ npm run dev
+$ open test.html
 ```

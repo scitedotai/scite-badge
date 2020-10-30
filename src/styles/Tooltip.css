@@ -212,3 +212,8 @@
   margin-bottom: 8px;
   width: 5em;
 }
+
+.noticeCopy {
+	color: #D84215;
+	font-weight: bold;
+}
