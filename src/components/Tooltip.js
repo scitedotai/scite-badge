@@ -30,9 +30,9 @@ const Tally = ({ className, tally, notices }) => (
     )}
 
     <div className={styles.tallyCounts}>
-      <Count type='supporting' count={tally && tally.supporting ? tally.supporting.toLocaleString() : 0} />
-      <Count type='mentioning' count={tally && tally.mentioning ? tally.mentioning.toLocaleString() : 0} />
-      <Count type='disputing' count={tally && tally.contradicting ? tally.contradicting.toLocaleString() : 0} />
+      <Count type='supporting' count={tally && tally.supporting ? tally.supporting.toLocaleString() : 0} className={styles.tallyCount} />
+      <Count type='mentioning' count={tally && tally.mentioning ? tally.mentioning.toLocaleString() : 0} className={styles.tallyCount} />
+      <Count type='disputing' count={tally && tally.contradicting ? tally.contradicting.toLocaleString() : 0} className={styles.tallyCount} />
     </div>
     <div className={styles.labels}>
       <span className={styles.label}>Supporting</span>
@@ -49,11 +49,11 @@ const Link = ({ className, href, children }) => (
 )
 
 const Message = ({ className }) => (
-  <div className={classNames(styles.message, className)}>
-    <p className={styles.bold}>
-      see all citations for this article at <Link href='https://scite.ai'>scite.ai</Link>
-    </p>
+  <div className={className}>
     <p>
+      See all citations for this article at <Link href='https://scite.ai'>scite.ai</Link>
+    </p>
+    <p className={styles.message}>
       scite is a platform that combines deep learning with expert
       analysis to automatically classify citations as supporting,
       disputing or mentioning.
@@ -64,7 +64,7 @@ const Message = ({ className }) => (
 const TooltipContent = ({ tally, notices }) => (
   <div className={styles.tooltipContent}>
     <img className={styles.logo} src='https://cdn.scite.ai/assets/images/logo.svg' />
-    <span className={styles.slogan}>Citation Statements</span>
+    <span className={styles.slogan}>Making Science Reliable</span>
 
     <Tally tally={tally} notices={notices} />
     {tally && <a className={styles.button} href={`https://scite.ai/reports/${tally.doi}`} target='_blank' rel='noopener noreferrer'>View Citations</a>}
@@ -73,7 +73,6 @@ const TooltipContent = ({ tally, notices }) => (
 )
 
 const TooltipPopper = ({
-  className,
   show,
   doi,
   tally,

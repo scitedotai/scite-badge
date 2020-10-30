@@ -1,6 +1,6 @@
 # Scite Badge #
 
-Thin wrapper around [scite widged](https://github.com/scitedotai/scite-widget) to allow embedding on pages.
+Thin wrapper around [scite widget](https://github.com/scitedotai/scite-widget) to allow embedding on pages.
 
 ## Example Usage ##
 
@@ -70,3 +70,5 @@ $ npm i
 $ npm run dev
 $ open test.html
 ```
+
+Tip: Change the scite-widget branch in `./package.json` to one you are working on.

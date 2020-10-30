@@ -24,7 +24,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-popper": "^2.2.3",
-    "scite-widget": "github:scitedotai/scite-widget#GH-671/add-editorial-notices-to-tally-wdiget",
+    "scite-widget": "github:scitedotai/scite-widget#master",
     "whatwg-fetch": "^3.2.0"
   },
   "devDependencies": {
