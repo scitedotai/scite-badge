@@ -155,6 +155,10 @@
     display: inline-block;
 }
 
+.noticeLabel {
+	display: inline;
+}
+
 .label {
     display: block;
 	margin: 0.5rem 0;
@@ -205,15 +209,13 @@
 }
 
 .logo {
-  display: inline-block;
+  display: block;
   width: 5em;
 }
 
 .slogan {
-	display: inline-block;
-	margin-left: 1rem;
-	margin-top: 0.5rem;
-	vertical-align: top;
+	display: block;
+	margin: 0.5rem 0;
 }
 
 

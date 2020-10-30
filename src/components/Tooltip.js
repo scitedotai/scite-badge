@@ -13,7 +13,7 @@ const Tally = ({ className, tally, notices }) => (
             <div className={styles.tallyCounts}>
               <Count type='notices' />
             </div>
-            <div className={styles.labels}>
+            <div className={styles.noticeLabel}>
               {(status === 'Retracted' || status === 'Withdrawn') ? (
                 <span className={classNames(styles.noticeCopy, styles[status])}>
                 This paper has been {status.toLowerCase()}
