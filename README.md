@@ -1,6 +1,6 @@
 # Scite Badge #
 
-Thin wrapper around [scite browser extension](https://github.com/scitedotai/scite-extension) to allow embedding on pages.
+Thin wrapper around [scite widget](https://github.com/scitedotai/scite-widget) to allow embedding on pages.
 
 ## Example Usage ##
 
@@ -62,3 +62,13 @@ $ git tag v1.2.0 -m "My cool new version"
 $ git push origin v1.2.0
 $ npm run build && npm run upload
 ```
+
+## Local development ##
+
+```
+$ npm i
+$ npm run dev
+$ open test.html
+```
+
+Tip: Change the scite-widget branch in `./package.json` to one you are working on.

@@ -1,7 +1,7 @@
 {
   "name": "scite-badge",
   "version": "2.0.4",
-  "description": "Wrapper around scite-extension",
+  "description": "Wrapper around scite-widget",
   "main": "index.js",
   "scripts": {
     "build": "parcel build src/index.js --no-source-maps -o scite-badge-$(git describe --always).min.js",

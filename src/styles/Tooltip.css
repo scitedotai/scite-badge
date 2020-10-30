@@ -136,10 +136,6 @@
     font-size: 14px;
 }
 
-.slogan {
-    display: block;
-    margin-top: 4px;
-}
 
 .tally {
     line-height: 1.5;
@@ -147,22 +143,26 @@
 
 .tallyCounts {
     display: inline-block;
-    margin-top: 12px;
+    margin-top: 0.5rem;
+}
+
+.tallyCount {
+	margin: 0.5rem 0;
+	font-weight: bold;
 }
 
 .labels {
     display: inline-block;
 }
 
-.label {
-    display: block;
-    margin-left: 8px;
+.noticeLabel {
+	display: inline;
 }
 
-.button {
-    margin-top: 12px;
-    font-weight: bold;
-    font-size: 12px;
+.label {
+    display: block;
+	margin: 0.5rem 0;
+	margin-left: 1rem;
 }
 
 .message {
@@ -187,11 +187,12 @@
 
 .button {
     display: inline-block;
-    background-color: #007aff;;
+    background-color: #0062FF;
 
-    border-radius: 20px;
+    border-radius: 6px;
 
-    padding: 4px 8px;
+    padding: 6px 12px;
+	margin-top: 12px;
 
     color: white;
     text-decoration: none;
@@ -209,6 +210,16 @@
 
 .logo {
   display: block;
-  margin-bottom: 8px;
   width: 5em;
+}
+
+.slogan {
+	display: block;
+	margin: 0.5rem 0;
+}
+
+
+.noticeCopy {
+	color: #D84215;
+	font-weight: bold;
 }

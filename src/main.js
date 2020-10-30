@@ -73,7 +73,7 @@ export function insertBadge (el) {
   render(
     (
       <TallyLoader doi={doi}>
-        {({ tally }) => (
+        {({ tally, notices }) => (
           <Tooltip
             doi={doi}
             tally={tally}
@@ -81,12 +81,14 @@ export function insertBadge (el) {
             placement={placement}
             flip={flip}
             slide={slide}
+            notices={notices}
           >
             <Tally
               tally={tally}
               horizontal={horizontal}
               showZero={showZero}
               showLabels={showLabels}
+              notices={notices}
               isBadge
             />
           </Tooltip>
