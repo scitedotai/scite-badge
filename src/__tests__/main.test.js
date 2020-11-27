@@ -20,6 +20,7 @@ describe('getConfig', () => {
     el.dataset.showLabels = 'true'
     el.dataset.targetEl = '.my-container'
     el.dataset.insertBefore = 'false'
+    el.dataset.small = 'true'
 
     const config = main.getConfig(el)
     expect(config.doi).toBe('10.bingbong')
@@ -29,6 +30,7 @@ describe('getConfig', () => {
     expect(config.showLabels).toBe(true)
     expect(config.targetEl).toBe('.my-container')
     expect(config.insertBefore).toBe(false)
+    expect(config.small).toBe(true)
   })
 
   it('can load DOI from meta tag', () => {

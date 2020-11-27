@@ -51,6 +51,10 @@ export function getConfig (el) {
     config.insertBefore = data.insertBefore === 'true'
   }
 
+  if (data.small) {
+    config.small = data.small === 'true'
+  }
+
   return config
 }
 
@@ -62,6 +66,7 @@ export function insertBadge (el) {
   const placement = config.placement || 'top'
   const showLabels = config.showLabels || false
   const slide = config.slide || 0
+  const small = config.small || false
 
   //
   // Don't ever flip tooltip if they specify placement
@@ -89,6 +94,7 @@ export function insertBadge (el) {
               showZero={showZero}
               showLabels={showLabels}
               notices={notices}
+              small={small}
               isBadge
             />
           </Tooltip>
