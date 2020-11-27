@@ -8,6 +8,12 @@ const rows = [
     showLabels: true
   },
   {
+    doi: '10.1038/nature10167',
+    layout: 'vertical',
+    showLabels: true,
+    small: true
+  },
+  {
     doi: '10.notrealjoaifds',
     layout: 'vertical'
   },
@@ -23,8 +29,26 @@ const rows = [
   },
   {
     doi: '10.1038/nature10167',
+    layout: 'horizontal',
+    showLabels: true,
+    small: true
+  },
+  {
+    doi: '10.1038/nature10167',
+    layout: 'horizontal',
+    showLabels: false,
+    small: true
+  },
+  {
+    doi: '10.1038/nature10167',
     layout: 'vertical',
     showLabels: false
+  },
+  {
+    doi: '10.1038/nature10167',
+    layout: 'vertical',
+    showLabels: false,
+    small: true
   },
   {
     doi: '10.1038/nature10167',
@@ -33,17 +57,18 @@ const rows = [
   }
 ]
 
-const Badge = ({ doi, layout, showLabels, placement }) => (
+const Badge = ({ doi, layout, showLabels, placement, small }) => (
   <div
     className='scite-badge'
     data-doi={doi}
     data-layout={layout}
     data-show-labels={String(!!showLabels)}
     data-tooltip-placement={placement}
+    data-small={small}
   />
 )
 
-const Row = ({ doi, layout, showLabels, placement }) => (
+const Row = ({ doi, layout, showLabels, placement, small }) => (
   <div className='badge-row'>
     <p className='paper'>
       etsi vereor, iudices, ne turpe sit pro fortissimo viro dicere incipientem timere minimeque deceat, cum T. Annius ipse magis de rei publicae salute quam de sua perturbetur1, me ad eius causam parem animi magnitudinem adferre non posse, tamen haec novi iudici nova forma terret oculos qui, quocumque inciderunt, veterem consuetudinem fori et pristinum morem iudiciorum requirunt.
@@ -53,6 +78,7 @@ const Row = ({ doi, layout, showLabels, placement }) => (
       layout={layout}
       showLabels={showLabels}
       placement={placement}
+      small={small}
     />
   </div>
 )

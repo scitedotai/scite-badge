@@ -1,12 +1,12 @@
 {
   "name": "scite-badge",
-  "version": "2.0.4",
+  "version": "3.5.0",
   "description": "Wrapper around scite-widget",
   "main": "index.js",
   "scripts": {
     "build": "parcel build src/index.js --no-source-maps -o scite-badge-$(git describe --always).min.js",
     "upload": "node ./scripts/upload.js",
-    "dev": "parcel src/index.js src/test-page.js",
+    "dev": "parcel watch src/index.js src/test-page.js",
     "lint": "standard --verbose | snazzy",
     "lint:fix": "standard --fix | snazzy",
     "test": "jest",
