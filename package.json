@@ -25,11 +25,12 @@
     "react-dom": "^16.13.1",
     "react-popper": "^2.2.3",
     "scite-widget": "github:scitedotai/scite-widget#master",
-    "whatwg-fetch": "^3.2.0"
+    "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.10.5",
+    "@babel/core": "^7.12.10",
     "@babel/plugin-transform-react-jsx": "^7.10.4",
+    "@babel/plugin-transform-runtime": "^7.12.10",
     "@babel/preset-env": "^7.10.4",
     "@babel/preset-react": "^7.10.4",
     "autoprefixer": "^9.8.5",

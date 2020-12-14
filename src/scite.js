@@ -1,0 +1,80 @@
+
+import React, { useEffect, useState } from 'react' // eslint-disable-line
+
+const { fetch } = window
+
+const NOTICE_STATUSES = ['retracted', 'has expression of concern', 'withdrawn', 'has erratum', 'has correction']
+
+const fetchTallies = async (dois, retry = 0, maxRetries = 8) => {
+  const fetchFailed = new Error('Failed to get Tallies')
+  try {
+    const response = await fetch('https://api.scite.ai/tallies', {
+      method: 'POST',
+      body: JSON.stringify(dois),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+    if (response.status === 404) {
+      return { tallies: {} }
+    }
+
+    if (!response.ok) {
+      throw fetchFailed
+    }
+    const data = await response.json()
+    return data || {}
+  } catch (e) {
+    if (e === fetchFailed && retry < maxRetries) {
+      return setTimeout(() => fetchTallies(dois, ++retry), 600)
+    }
+    console.error(fetchFailed)
+  }
+  return { tallies: {} }
+}
+
+const fetchNotices = async (dois, retry = 0, maxRetries = 8) => {
+  const fetchFailed = new Error('Failed to get notices')
+  try {
+    const response = await fetch('https://api.scite.ai/papers', {
+      method: 'POST',
+      body: JSON.stringify(dois),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+    if (response.status === 404) {
+      return { notices: {} }
+    }
+
+    if (!response.ok) {
+      throw fetchFailed
+    }
+    const data = await response.json()
+    const notices = {}
+    for (const paper in data.papers) {
+      if (!data.papers[paper].editorialNotices) {
+        notices[paper] = []
+        continue
+      }
+
+      notices[paper] = [...new Set(data.papers[paper].editorialNotices
+        .filter(({ status }) => NOTICE_STATUSES.includes(status.toLowerCase()))
+        .map(({ status }) => status))]
+    }
+    return { notices }
+  } catch (e) {
+    if (e === fetchFailed && retry < maxRetries) {
+      return setTimeout(() => fetchTallies(dois, ++retry), 600)
+    }
+    console.error(fetchFailed)
+  }
+  return { notices: {} }
+}
+
+module.exports = {
+  fetchTallies,
+  fetchNotices
+}
