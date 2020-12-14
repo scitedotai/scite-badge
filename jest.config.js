@@ -6,5 +6,9 @@ module.exports = {
   coverageDirectory: 'coverage',
   moduleNameMapper: {
     '\\.css$': 'identity-obj-proxy'
-  }
+  },
+  automock: false,
+  setupFiles: [
+    './setupTests.js'
+  ]
 }

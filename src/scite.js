@@ -27,9 +27,10 @@ const fetchTallies = async (dois, retry = 0, maxRetries = 8) => {
     return data || {}
   } catch (e) {
     if (e === fetchFailed && retry < maxRetries) {
-      return setTimeout(() => fetchTallies(dois, ++retry), 600)
+      return await new Promise((resolve) => setTimeout(() => resolve(fetchTallies(dois, ++retry)), 600))
+    } else {
+      console.error(fetchFailed)
     }
-    console.error(fetchFailed)
   }
   return { tallies: {} }
 }
@@ -67,11 +68,11 @@ const fetchNotices = async (dois, retry = 0, maxRetries = 8) => {
     return { notices }
   } catch (e) {
     if (e === fetchFailed && retry < maxRetries) {
-      return setTimeout(() => fetchTallies(dois, ++retry), 600)
+      return await new Promise((resolve) => setTimeout(() => resolve(fetchNotices(dois, ++retry)), 600))
+    } else {
+      console.error(fetchFailed)
     }
-    console.error(fetchFailed)
   }
-  return { notices: {} }
 }
 
 module.exports = {

@@ -11,7 +11,10 @@ const BATCH_SIZE = 500
 export function getConfig (el) {
   const data = el.dataset
   const config = {}
-  config.doi = getDOI(el)
+  const doi = getDOI(el)
+  if (doi) {
+    config.doi = doi
+  }
 
   if (data.showZero) {
     config.showZero = data.showZero === 'true'
