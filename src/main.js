@@ -171,8 +171,7 @@ export async function insertBadges () {
   const pages = Math.ceil(dois.length / BATCH_SIZE)
   for (let i = 0; i < pages; i++) {
     const currentDOIs = dois.slice(i * BATCH_SIZE, (i + 1) * BATCH_SIZE)
-    const { tallies } = await fetchTallies(currentDOIs)
-    const { notices } = await fetchNotices(currentDOIs)
+    const [{ tallies }, { notices }] = await Promise.all([fetchTallies(currentDOIs), fetchNotices(currentDOIs)])
 
     for (const badge of badges) {
       const doi = getDOI(badge)
@@ -185,16 +184,13 @@ export async function insertBadges () {
   return badges
 }
 
-export function main () {
-  insertBadges().then(
-    badges => {
-      //
-      // If we didn't find any, try waiting for document load
-      // we may have been inserted further up the page
-      //
-      if (badges.length === 0) {
-        window.addEventListener('load', insertBadges)
-      }
-    }
-  )
+export async function main () {
+  const badges = await insertBadges()
+  //
+  // If we didn't find any, try waiting for document load
+  // we may have been inserted further up the page
+  //
+  if (badges.length === 0) {
+    window.addEventListener('load', insertBadges)
+  }
 }
