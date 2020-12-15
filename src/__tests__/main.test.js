@@ -102,8 +102,9 @@ describe('main', () => {
     const addEventListener = jest.spyOn(window, 'addEventListener')
 
     main.main()
-
-    expect(addEventListener).toBeCalledTimes(1)
-    expect(addEventListener).toBeCalledWith('load', main.insertBadges)
+    setTimeout(() => {
+      expect(addEventListener).toBeCalledTimes(1)
+      expect(addEventListener).toBeCalledWith('load', main.insertBadges)
+    }, 1000)
   })
 })
