@@ -68,7 +68,7 @@ function getDOI (el) {
   } else if (data.doi) {
     doi = data.doi
   }
-  return doi.toLowerCase()
+  return doi.toLowerCase().trim()
 }
 
 export function insertBadge (el, tally, notices) {
