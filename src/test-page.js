@@ -65,6 +65,7 @@ const Badge = ({ doi, layout, showLabels, placement, small }) => (
     data-show-labels={String(!!showLabels)}
     data-tooltip-placement={placement}
     data-small={small}
+    data-campaign='test'
   />
 )
 
