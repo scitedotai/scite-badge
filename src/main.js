@@ -8,6 +8,8 @@ import './styles/index.css'
 
 const BATCH_SIZE = 500
 
+const HOST_NAME = window.location.hostname
+
 export function getConfig (el) {
   const data = el.dataset
   const config = {}
@@ -48,6 +50,10 @@ export function getConfig (el) {
     config.small = data.small === 'true'
   }
 
+  if (data.campaign) {
+    config.campaign = data.campaign
+  }
+
   return config
 }
 
@@ -68,7 +74,7 @@ function getDOI (el) {
   } else if (data.doi) {
     doi = data.doi
   }
-  return doi.toLowerCase().trim()
+  return doi && doi.toLowerCase().trim()
 }
 
 export function insertBadge (el, tally, notices) {
@@ -80,6 +86,7 @@ export function insertBadge (el, tally, notices) {
   const showLabels = config.showLabels || false
   const slide = config.slide || 0
   const small = config.small || false
+  const campaign = config.campaign || undefined
 
   //
   // Don't ever flip tooltip if they specify placement
@@ -106,6 +113,8 @@ export function insertBadge (el, tally, notices) {
           showLabels={showLabels}
           notices={notices}
           small={small}
+          source={HOST_NAME}
+          campaign={campaign}
           isBadge
         />
       </Tooltip>
