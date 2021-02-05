@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react' // eslint-disable-line
 
 const { fetch } = window

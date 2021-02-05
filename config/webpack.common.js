@@ -3,7 +3,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
   entry: {
-    app: './src/index.js'
+    badge: './src/index.js'
   },
 
   plugins: [
