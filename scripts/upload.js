@@ -17,7 +17,7 @@ const upload = (s3, fromPath, toPath) => s3.upload({
   Key: toPath,
   Body: fs.createReadStream(fromPath),
   ContentType: mime.lookup(fromPath),
-  CachControl: 'max-age=86400'
+  CacheControl: 'max-age=86400'
 }).promise()
 
 async function main () {
