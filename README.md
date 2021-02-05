@@ -4,11 +4,10 @@ Thin wrapper around [scite widget](https://github.com/scitedotai/scite-widget) t
 
 ## Example Usage ##
 
-To use simply include the Javascript and CSS styles on your page. All elements with the class `scite-badge` will have a badge injected into them, with the target DOI selected by the `data-doi` attribute.
+To use simply include the Javascript bundle on your page. All elements with the class `scite-badge` will have a badge injected into them, with the target DOI selected by the `data-doi` attribute.
 
 ```
-<link rel="stylesheet" type="text/css" href="https://cdn.scite.ai/badge/scite-badge-latest.min.css">
-<script type="application/javascript" src="https://cdn.scite.ai/badge/scite-badge-latest.min.js"></script>
+<script type="application/javascript" src="https://cdn.scite.ai/badge/scite-badge-full-latest.min.js"></script>
 <div class="scite-badge" data-doi="10.1016/j.biopsych.2005.08.012"></div>
 ```
 
@@ -57,10 +56,16 @@ If `insert-before` is not set to `true` then the badge will be appended to the e
 
 Releases are uploaded to Azure. To do a release run something like:
 
-```
+```bash
 $ git tag v1.2.0 -m "My cool new version"
 $ git push origin v1.2.0
 $ npm run build && npm run upload
+```
+
+To release to prod (default is stage) you can run:
+
+```bash
+$ npm run build && npm run upload -- prod
 ```
 
 ## Local development ##
@@ -68,7 +73,8 @@ $ npm run build && npm run upload
 ```
 $ npm i
 $ npm run dev
-$ open test.html
 ```
+
+This will serve the application at `localhost:8001`.
 
 Tip: Change the scite-widget branch in `./package.json` to one you are working on.

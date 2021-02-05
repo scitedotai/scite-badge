@@ -1,0 +1,21 @@
+const { merge } = require('webpack-merge')
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const common = require('./webpack.common.js')
+
+module.exports = merge(common, {
+  entry: {
+    testPage: './src/test-page.js'
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: 'src/test-page.ejs'
+    })
+  ],
+  mode: 'development',
+  devtool: 'inline-source-map',
+  devServer: {
+    contentBase: path.join(__dirname, '../dist'),
+    port: 8001
+  }
+})
