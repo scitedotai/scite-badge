@@ -30,6 +30,7 @@ jobs:
           event: pass
           template: SLACK_PASS_TEST_TEMPLATE
 
+  deploy:
     steps:
       - checkout
 
