@@ -31,6 +31,10 @@ jobs:
           template: SLACK_PASS_TEST_TEMPLATE
 
   deploy:
+    working_directory: ~/repo
+    docker:
+      - image: circleci/node:lts
+
     steps:
       - checkout
 
