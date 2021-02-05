@@ -7,7 +7,7 @@ Thin wrapper around [scite widget](https://github.com/scitedotai/scite-widget) t
 To use simply include the Javascript bundle on your page. All elements with the class `scite-badge` will have a badge injected into them, with the target DOI selected by the `data-doi` attribute.
 
 ```
-<script type="application/javascript" src="https://cdn.scite.ai/badge/scite-badge-latest.min.js"></script>
+<script type="application/javascript" src="https://cdn.scite.ai/badge/scite-badge-full-latest.min.js"></script>
 <div class="scite-badge" data-doi="10.1016/j.biopsych.2005.08.012"></div>
 ```
 
