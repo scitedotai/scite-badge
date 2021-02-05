@@ -73,5 +73,7 @@ workflows:
               only:
                 - master
                 - stage
+            tags:
+              only: /^v.*/
           requires:
             - test
