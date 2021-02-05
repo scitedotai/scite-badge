@@ -27,7 +27,16 @@ module.exports = {
               modules: true
             }
           }
-        ]
+        ],
+        exclude: /node_modules/
+      },
+      {
+        test: /\.css$/i,
+        use: [
+          'style-loader',
+          'css-loader'
+        ],
+        include: /node_modules/
       }
     ]
   },
