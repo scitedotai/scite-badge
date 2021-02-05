@@ -2,14 +2,13 @@ const fs = require('fs')
 const { execSync } = require('child_process')
 const mime = require('mime-types')
 const S3 = require('aws-sdk/clients/s3')
+const CloudFront = require('aws-sdk/clients/cloudfront')
 
-const {
-  SCITE_AWS_ACCESS_KEY_ID,
-  SCITE_AWS_SECRET_ACCESS_KEY
-} = process.env
-
-const BUCKET = process.argv[2] === 'prod' ? 'scitewebassets' : 'scitewebassets-stage'
+const { CIRCLE_BRANCH } = process.env
+const BUCKET = CIRCLE_BRANCH === 'master' ? 'scitewebassets' : 'scitewebassets-stage'
+const CLOUDFRONT_DISTRIBUTION = CIRCLE_BRANCH === 'master' ? 'ERIXC9NB9NEX7' : 'EE31527A00YNS'
 const VERSION = execSync('git describe --always').toString().trim()
+
 console.info(`Uploading ${VERSION} to ${BUCKET}`)
 
 const upload = (s3, fromPath, toPath) => s3.upload({
@@ -21,12 +20,10 @@ const upload = (s3, fromPath, toPath) => s3.upload({
 }).promise()
 
 async function main () {
-  const s3 = new S3({
-    accessKeyId: SCITE_AWS_ACCESS_KEY_ID,
-    secretAccessKey: SCITE_AWS_SECRET_ACCESS_KEY
-  })
+  const s3 = new S3()
+  const cloudfront = new CloudFront()
 
-  const responses = await Promise.all([
+  await Promise.all([
     upload(
       s3,
       'dist/badge.bundle.js',
@@ -39,7 +36,24 @@ async function main () {
     )
   ])
 
-  return responses
+  console.info('Creating cloudfront invalidation')
+  const { Invalidation: cfInvalidation } = await cloudfront.createInvalidation({
+    DistributionId: CLOUDFRONT_DISTRIBUTION,
+    InvalidationBatch: {
+      CallerReference: Number(new Date()).toString(),
+      Paths: {
+        Quantity: 1,
+        Items: [
+          '/badge/scite-badge-latest.min.js'
+        ]
+      }
+    }
+  }).promise()
+  console.info(`Waiting for cloudfront invalidation ${cfInvalidation.Id}...`)
+  await cloudfront.waitFor('invalidationCompleted', {
+    DistributionId: CLOUDFRONT_DISTRIBUTION,
+    Id: cfInvalidation.Id
+  }).promise()
 }
 
 main()
