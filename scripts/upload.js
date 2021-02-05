@@ -29,13 +29,13 @@ async function main () {
   const responses = await Promise.all([
     upload(
       s3,
-      `dist/scite-badge-full-${VERSION}.min.js`,
-      'badge/badge.bundle.js'
+      'dist/badge.bundle.js',
+      'badge/scite-badge-latest.min.js'
     ),
     upload(
       s3,
-      `dist/scite-badge-full-${VERSION}.min.js`,
-      'badge/badge.bundle.js'
+      'dist/badge.bundle.js',
+      `badge/scite-badge-${VERSION}.min.js`
     )
   ])
 
