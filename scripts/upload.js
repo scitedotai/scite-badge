@@ -7,7 +7,7 @@ const CloudFront = require('aws-sdk/clients/cloudfront')
 const { CIRCLE_BRANCH } = process.env
 const BUCKET = CIRCLE_BRANCH === 'master' ? 'scitewebassets' : 'scitewebassets-stage'
 const CLOUDFRONT_DISTRIBUTION = CIRCLE_BRANCH === 'master' ? 'ERIXC9NB9NEX7' : 'EE31527A00YNS'
-const VERSION = execSync('git describe --always').toString().trim()
+const VERSION = execSync('git describe --abbrev=0').toString().trim()
 
 console.info(`Uploading ${VERSION} to ${BUCKET}`)
 
