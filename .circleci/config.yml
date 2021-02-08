@@ -30,7 +30,7 @@ jobs:
           event: pass
           template: SLACK_PASS_TEST_TEMPLATE
 
-  deploy_stage:
+  deploy:
     working_directory: ~/repo
     docker:
       - image: circleci/node:lts
@@ -70,7 +70,7 @@ workflows:
             - slack-secrets
           filters:
             tags:
-              only: /-(stage|prod)$/
+              only: /v.*-(stage|prod)$/
             branches:
               ignore: /.*/
           requires:
