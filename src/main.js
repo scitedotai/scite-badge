@@ -186,6 +186,8 @@ export async function insertBadges () {
       const doi = getDOI(badge)
       if (doi in tallies) {
         insertBadge(badge, tallies[doi], notices[doi])
+      } else {
+        insertBadge(badge, { total: 0 }, {})
       }
     }
   }
