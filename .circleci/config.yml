@@ -30,7 +30,7 @@ jobs:
           event: pass
           template: SLACK_PASS_TEST_TEMPLATE
 
-  deploy:
+  deploy_stage:
     working_directory: ~/repo
     docker:
       - image: circleci/node:lts
@@ -50,7 +50,35 @@ jobs:
           key: v1-dependencies-{{ checksum "package-lock.json" }}
 
       - run: npm run build
-      - run: npm run upload -- $CIRCLE_BRANCH
+      - run: npm run upload -- stage
+      - slack/notify:
+          event: fail
+          template: SLACK_FAIL_TEMPLATE
+      - slack/notify:
+          event: pass
+          template: SLACK_PASS_TEMPLATE
+
+  deploy_prod:
+    working_directory: ~/repo
+    docker:
+      - image: circleci/node:lts
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package-lock.json" }}
+
+      - run: npm ci
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package-lock.json" }}
+
+      - run: npm run build
+      - run: npm run upload -- prod
       - slack/notify:
           event: fail
           template: SLACK_FAIL_TEMPLATE
@@ -65,14 +93,19 @@ workflows:
       - test:
           context:
             - slack-secrets
-      - deploy:
+      - deploy_stage:
           context:
             - slack-secrets
           filters:
             tags:
-              only: /^v\d+\.\d+\.\d+$/
-            branches:
-              only:
-                - stage
+              only: /-stage$/
+          requires:
+            - test
+      - deploy_prod:
+          context:
+            - slack-secrets
+          filters:
+            tags:
+              only: /-prod$/
           requires:
             - test
