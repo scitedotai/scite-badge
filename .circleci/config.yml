@@ -99,6 +99,8 @@ workflows:
           filters:
             tags:
               only: /-stage$/
+            branches:
+              ignore: /.*/
           requires:
             - test
       - deploy_prod:
@@ -107,5 +109,7 @@ workflows:
           filters:
             tags:
               only: /-prod$/
+            branches:
+              ignore: /.*/
           requires:
             - test
