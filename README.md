@@ -54,18 +54,18 @@ If `insert-before` is not set to `true` then the badge will be appended to the e
 
 ## Release ##
 
-Releases are uploaded to Azure. To do a release run something like:
+Releases are uploaded to our CDN by Circle. The release channel is based on the tag. To release a commit to stage push the tag (e.g.):
 
 ```bash
-$ git tag v1.2.0 -m "My cool new version"
-$ git push origin v1.2.0
-$ npm run build && npm run upload
+$ git tag v1.2.0-stage -m "My cool new version"
+$ git push origin v1.2.0-stage
 ```
 
-To release to prod (default is stage) you can run:
+To release to prod (e.g.):
 
 ```bash
-$ npm run build && npm run upload -- prod
+$ git tag v1.2.0-prod -m "My cool new version"
+$ git push origin v1.2.0-prod
 ```
 
 ## Local development ##
