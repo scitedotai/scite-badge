@@ -1,5 +1,9 @@
 const path = require('path')
+const { execSync } = require('child_process')
+const { DefinePlugin } = require('webpack')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+
+const TAG = execSync('git describe --abbrev=0').toString().trim()
 
 module.exports = {
   entry: {
@@ -7,7 +11,10 @@ module.exports = {
   },
 
   plugins: [
-    new CleanWebpackPlugin()
+    new CleanWebpackPlugin(),
+    new DefinePlugin({
+      __VERSION__: JSON.stringify(TAG)
+    })
   ],
 
   module: {

@@ -57,6 +57,9 @@
     "parser": "babel-eslint",
     "ignore": [
       "dist"
+    ],
+    "globals": [
+      "__VERSION__"
     ]
   }
 }
