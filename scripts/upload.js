@@ -4,9 +4,12 @@ const mime = require('mime-types')
 const S3 = require('aws-sdk/clients/s3')
 const CloudFront = require('aws-sdk/clients/cloudfront')
 
-const BUCKET = process.argv[2] === 'prod' ? 'scitewebassets' : 'scitewebassets-stage'
-const CLOUDFRONT_DISTRIBUTION = process.argv[2] === 'prod' ? 'ERIXC9NB9NEX7' : 'EE31527A00YNS'
-const VERSION = execSync('git describe --abbrev=0').toString().trim().split('-')[0]
+const TAG = execSync('git describe --abbrev=0').toString().trim()
+const VERSION = TAG.split('-')[0]
+const ENV = TAG.split('-')[1]
+
+const BUCKET = ENV === 'prod' ? 'scitewebassets' : 'scitewebassets-stage'
+const CLOUDFRONT_DISTRIBUTION = ENV === 'prod' ? 'ERIXC9NB9NEX7' : 'EE31527A00YNS'
 
 console.info(`Uploading ${VERSION} to ${BUCKET}`)
 

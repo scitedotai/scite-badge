@@ -50,35 +50,7 @@ jobs:
           key: v1-dependencies-{{ checksum "package-lock.json" }}
 
       - run: npm run build
-      - run: npm run upload -- stage
-      - slack/notify:
-          event: fail
-          template: SLACK_FAIL_TEMPLATE
-      - slack/notify:
-          event: pass
-          template: SLACK_PASS_TEMPLATE
-
-  deploy_prod:
-    working_directory: ~/repo
-    docker:
-      - image: circleci/node:lts
-
-    steps:
-      - checkout
-
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package-lock.json" }}
-
-      - run: npm ci
-
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package-lock.json" }}
-
-      - run: npm run build
-      - run: npm run upload -- prod
+      - run: npm run upload
       - slack/notify:
           event: fail
           template: SLACK_FAIL_TEMPLATE
@@ -93,22 +65,12 @@ workflows:
       - test:
           context:
             - slack-secrets
-      - deploy_stage:
+      - deploy:
           context:
             - slack-secrets
           filters:
             tags:
-              only: /-stage$/
-            branches:
-              ignore: /.*/
-          requires:
-            - test
-      - deploy_prod:
-          context:
-            - slack-secrets
-          filters:
-            tags:
-              only: /-prod$/
+              only: /-(stage|prod)$/
             branches:
               ignore: /.*/
           requires:
