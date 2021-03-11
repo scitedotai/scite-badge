@@ -219,7 +219,12 @@
 }
 
 
-.noticeCopy {
+.retractionsCopy {
 	color: #D84215;
+	font-weight: bold;
+}
+
+.noticeCopy {
+	color: black;
 	font-weight: bold;
 }

@@ -11,11 +11,15 @@ const Tally = ({ className, tally, notices }) => (
         {notices.map((status, i) => (
           <div key={`${i}-${status}`} className={styles.notice}>
             <div className={styles.tallyCounts}>
-              <Count type='notices' />
+              {(status === 'Retracted' || status === 'Withdrawn') ? (
+                <Count type='retractions' />
+              ) : (
+                <Count type='notices' />
+              )}
             </div>
             <div className={styles.noticeLabel}>
               {(status === 'Retracted' || status === 'Withdrawn') ? (
-                <span className={classNames(styles.noticeCopy, styles[status])}>
+                <span className={classNames(styles.retractionsCopy, styles[status])}>
                 This paper has been {status.toLowerCase()}
                 </span>
               ) : (
