@@ -4,12 +4,12 @@ import './styles/test.css'
 
 const rows = [
   {
-    doi: '10.1038/nature10167',
+    doi: '10.1038/nature07404',
     layout: 'vertical',
     showLabels: true
   },
   {
-    doi: '10.1038/nature10167',
+    doi: '10.1038/nature07404',
     layout: 'vertical',
     showLabels: true,
     small: true
@@ -19,40 +19,40 @@ const rows = [
     layout: 'vertical'
   },
   {
-    doi: '10.1038/nature10167',
+    doi: '10.1038/nature07404',
     layout: 'horizontal',
     showLabels: true
   },
   {
-    doi: '10.1038/nature10167',
+    doi: '10.1038/nature07404',
     layout: 'horizontal',
     showLabels: false
   },
   {
-    doi: '10.1038/nature10167',
+    doi: '10.1038/nature07404',
     layout: 'horizontal',
     showLabels: true,
     small: true
   },
   {
-    doi: '10.1038/nature10167',
+    doi: '10.1038/nature07404',
     layout: 'horizontal',
     showLabels: false,
     small: true
   },
   {
-    doi: '10.1038/nature10167',
+    doi: '10.1038/nature07404',
     layout: 'vertical',
     showLabels: false
   },
   {
-    doi: '10.1038/nature10167',
+    doi: '10.1038/nature07404',
     layout: 'vertical',
     showLabels: false,
     small: true
   },
   {
-    doi: '10.1038/nature10167',
+    doi: '10.1038/nature07404',
     layout: 'vertical',
     placement: 'left'
   }
