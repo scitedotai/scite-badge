@@ -36,12 +36,12 @@ const Tally = ({ className, tally, notices }) => (
     <div className={styles.tallyCounts}>
       <Count type='supporting' count={tally && tally.supporting ? tally.supporting.toLocaleString() : 0} className={styles.tallyCount} />
       <Count type='mentioning' count={tally && tally.mentioning ? tally.mentioning.toLocaleString() : 0} className={styles.tallyCount} />
-      <Count type='disputing' count={tally && tally.contradicting ? tally.contradicting.toLocaleString() : 0} className={styles.tallyCount} />
+      <Count type='contrasting' count={tally && tally.contradicting ? tally.contradicting.toLocaleString() : 0} className={styles.tallyCount} />
     </div>
     <div className={styles.labels}>
       <span className={styles.label}>Supporting</span>
       <span className={styles.label}>Mentioning</span>
-      <span className={styles.label}>Disputing</span>
+      <span className={styles.label}>Contrasting</span>
     </div>
   </div>
 )
@@ -60,7 +60,7 @@ const Message = ({ className }) => (
     <p className={styles.message}>
       scite is a platform that combines deep learning with expert
       analysis to automatically classify citations as supporting,
-      disputing or mentioning.
+      contrasting or mentioning.
     </p>
   </div>
 )

@@ -23,7 +23,7 @@ To use simply include the Javascript bundle on your page. All elements with the 
 
 `tooltip-slide`: Preferred tooltip position offset along edge in pixels (default: `0`, the center)
 
-`show-labels`: Whether to show tally labels (supporting, disputing, mentioning) (default: `false`)
+`show-labels`: Whether to show tally labels (supporting, contrasting, mentioning) (default: `false`)
 
 To pull the target DOI from a meta tag in the document rather than setting inline, you can use the syntax `meta:my_tag_name`. For example:
 
