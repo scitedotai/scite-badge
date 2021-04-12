@@ -149,12 +149,25 @@ const TooltipPopper = ({
   )
 }
 
-export const Tooltip = ({ doi, tally, notices, showZero, placement = 'top', flip, slide = 0, children }) => {
+export const Tooltip = ({
+  doi,
+  tally,
+  notices,
+  showZero,
+  placement = 'top',
+  flip,
+  slide = 0,
+  children
+}) => {
   const [showTooltip, setShowTooltip] = useState(false)
   let hideTooltipIntvl
   let showTooltipIntvl
 
   const handleMouseEnter = () => {
+    if (placement === 'none') {
+      return
+    }
+
     if (hideTooltipIntvl) {
       clearTimeout(hideTooltipIntvl)
     }
@@ -164,6 +177,10 @@ export const Tooltip = ({ doi, tally, notices, showZero, placement = 'top', flip
   }
 
   const handleMouseLeave = () => {
+    if (placement === 'none') {
+      return
+    }
+
     if (showTooltipIntvl) {
       clearTimeout(showTooltipIntvl)
     }

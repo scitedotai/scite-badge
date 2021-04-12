@@ -6,7 +6,8 @@ const rows = [
   {
     doi: '10.1038/nature07404',
     layout: 'vertical',
-    showLabels: true
+    showLabels: true,
+    placement: 'none'
   },
   {
     doi: '10.1038/nature07404',
