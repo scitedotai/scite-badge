@@ -19,7 +19,7 @@ To use simply include the Javascript bundle on your page. All elements with the 
 
 `layout`: Either 'vertical' or 'horizontal' (default: `vertical`)
 
-`tooltip-placement`: Preferred tooltip placement (`left`, `right`, `top` or `bottom`) (default: `top`)
+`tooltip-placement`: Preferred tooltip placement (`left`, `right`, `top`, `bottom` or `none`) (default: `top`)
 
 `tooltip-slide`: Preferred tooltip position offset along edge in pixels (default: `0`, the center)
 
