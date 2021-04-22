@@ -189,6 +189,10 @@ export const Tooltip = ({
     }, 300)
   }
 
+  if (placement === 'none') {
+    return children
+  }
+
   return (
     <Manager>
       <Reference>
