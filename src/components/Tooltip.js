@@ -34,11 +34,13 @@ const Tally = ({ className, tally, notices }) => (
     )}
 
     <div className={styles.tallyCounts}>
+      <Count type='publications' count={tally && tally.citingPublications ? tally.citingPublications.toLocaleString() : 0} className={styles.tallyCount} />
       <Count type='supporting' count={tally && tally.supporting ? tally.supporting.toLocaleString() : 0} className={styles.tallyCount} />
       <Count type='mentioning' count={tally && tally.mentioning ? tally.mentioning.toLocaleString() : 0} className={styles.tallyCount} />
       <Count type='contrasting' count={tally && tally.contradicting ? tally.contradicting.toLocaleString() : 0} className={styles.tallyCount} />
     </div>
     <div className={styles.labels}>
+      <span className={styles.label}>Citing Publications</span>
       <span className={styles.label}>Supporting</span>
       <span className={styles.label}>Mentioning</span>
       <span className={styles.label}>Contrasting</span>
