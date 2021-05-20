@@ -1,6 +1,6 @@
 {
   "name": "scite-badge",
-  "version": "5.5.1",
+  "version": "5.6.0",
   "description": "Wrapper around scite-widget",
   "main": "index.js",
   "scripts": {
@@ -25,7 +25,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-popper": "^2.2.3",
-    "scite-widget": "github:scitedotai/scite-widget#master",
+    "scite-widget": "github:scitedotai/scite-widget#318ca5c09fe751314e023fa713b83bf0cd6f0ae4",
     "whatwg-fetch": "^3.5.0"
   },
   "devDependencies": {
