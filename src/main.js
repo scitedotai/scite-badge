@@ -93,7 +93,13 @@ export function insertBadge (el, tally, notices) {
   //
   const flip = !config.placement
 
-  unmountComponentAtNode(el)
+  // If element is already existing on another react DOM
+  // this method can throws an exception but does remove the node
+  try {
+    unmountComponentAtNode(el)
+  } catch (_) {
+    console.warn('Scite badge: unmounting component on another react DOM')
+  }
 
   render(
     (
