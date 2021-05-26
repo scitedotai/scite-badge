@@ -55,11 +55,12 @@ const rows = [
   {
     doi: '10.1038/nature07404',
     layout: 'vertical',
-    placement: 'left'
+    placement: 'left',
+    autologin: 'azure'
   }
 ]
 
-const Badge = ({ doi, layout, showLabels, placement, small }) => (
+const Badge = ({ doi, layout, showLabels, placement, small, autologin }) => (
   <div
     className='scite-badge'
     data-doi={doi}
@@ -67,11 +68,12 @@ const Badge = ({ doi, layout, showLabels, placement, small }) => (
     data-show-labels={String(!!showLabels)}
     data-tooltip-placement={placement}
     data-small={small}
+    data-autologin={autologin}
     data-campaign='test'
   />
 )
 
-const Row = ({ doi, layout, showLabels, placement, small }) => (
+const Row = ({ doi, layout, showLabels, placement, small, autologin }) => (
   <div className='badge-row'>
     <p className='paper'>
       etsi vereor, iudices, ne turpe sit pro fortissimo viro dicere incipientem timere minimeque deceat, cum T. Annius ipse magis de rei publicae salute quam de sua perturbetur1, me ad eius causam parem animi magnitudinem adferre non posse, tamen haec novi iudici nova forma terret oculos qui, quocumque inciderunt, veterem consuetudinem fori et pristinum morem iudiciorum requirunt.
@@ -82,6 +84,7 @@ const Row = ({ doi, layout, showLabels, placement, small }) => (
       showLabels={showLabels}
       placement={placement}
       small={small}
+      autologin={autologin}
     />
   </div>
 )

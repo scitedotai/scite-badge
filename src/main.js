@@ -54,6 +54,10 @@ export function getConfig (el) {
     config.campaign = data.campaign
   }
 
+  if (data.autologin) {
+    config.autologin = data.autologin
+  }
+
   return config
 }
 
@@ -87,6 +91,7 @@ export function insertBadge (el, tally, notices) {
   const slide = config.slide || 0
   const small = config.small || false
   const campaign = config.campaign || undefined
+  const autologin = config.autologin || undefined
 
   //
   // Don't ever flip tooltip if they specify placement
@@ -121,6 +126,7 @@ export function insertBadge (el, tally, notices) {
           small={small}
           source={HOST_NAME}
           campaign={campaign}
+          autologin={autologin}
           isBadge
         />
       </Tooltip>
