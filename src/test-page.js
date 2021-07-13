@@ -20,6 +20,11 @@ const rows = [
     layout: 'vertical'
   },
   {
+    doi: '10.notrealjoaifds',
+    layout: 'vertical',
+    forceCollapse: true
+  },
+  {
     doi: '10.1038/nature07404',
     layout: 'horizontal',
     showLabels: true
@@ -60,7 +65,7 @@ const rows = [
   }
 ]
 
-const Badge = ({ doi, layout, showLabels, placement, small, autologin }) => (
+const Badge = ({ doi, layout, showLabels, forceCollapse, placement, small, autologin }) => (
   <div
     className='scite-badge'
     data-doi={doi}
@@ -70,10 +75,11 @@ const Badge = ({ doi, layout, showLabels, placement, small, autologin }) => (
     data-small={small}
     data-autologin={autologin}
     data-campaign='test'
+    data-force-collapse={forceCollapse}
   />
 )
 
-const Row = ({ doi, layout, showLabels, placement, small, autologin }) => (
+const Row = ({ doi, layout, showLabels, forceCollapse, placement, small, autologin }) => (
   <div className='badge-row'>
     <p className='paper'>
       etsi vereor, iudices, ne turpe sit pro fortissimo viro dicere incipientem timere minimeque deceat, cum T. Annius ipse magis de rei publicae salute quam de sua perturbetur1, me ad eius causam parem animi magnitudinem adferre non posse, tamen haec novi iudici nova forma terret oculos qui, quocumque inciderunt, veterem consuetudinem fori et pristinum morem iudiciorum requirunt.
@@ -82,6 +88,7 @@ const Row = ({ doi, layout, showLabels, placement, small, autologin }) => (
       doi={doi}
       layout={layout}
       showLabels={showLabels}
+      forceCollapse={forceCollapse}
       placement={placement}
       small={small}
       autologin={autologin}

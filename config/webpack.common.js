@@ -35,7 +35,7 @@ module.exports = {
             }
           }
         ],
-        exclude: /node_modules/
+        exclude: /node_modules|scite-widget/
       },
       {
         test: /\.css$/i,
@@ -43,7 +43,7 @@ module.exports = {
           'style-loader',
           'css-loader'
         ],
-        include: /node_modules/
+        include: /node_modules|scite-widget/
       }
     ]
   },

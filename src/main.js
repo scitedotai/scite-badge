@@ -22,6 +22,10 @@ export function getConfig (el) {
     config.showZero = data.showZero === 'true'
   }
 
+  if (data.forceCollapse) {
+    config.forceCollapse = data.forceCollapse === 'true'
+  }
+
   if (data.layout) {
     config.horizontal = data.layout === 'horizontal'
   }
@@ -85,6 +89,7 @@ export function insertBadge (el, tally, notices) {
   const config = getConfig(el)
   const doi = config.doi
   const showZero = config.showZero || false
+  const forceCollapse = config.forceCollapse || false
   const horizontal = config.horizontal || false
   const placement = config.placement || 'top'
   const showLabels = config.showLabels || false
@@ -121,6 +126,7 @@ export function insertBadge (el, tally, notices) {
           tally={tally}
           horizontal={horizontal}
           showZero={showZero}
+          forceCollapse={forceCollapse}
           showLabels={showLabels}
           notices={notices}
           small={small}
@@ -199,7 +205,7 @@ export async function insertBadges () {
       if (doi in tallies) {
         insertBadge(badge, tallies[doi], notices[doi])
       } else {
-        insertBadge(badge, { total: 0 }, {})
+        insertBadge(badge, { total: 0, citingPublications: 0 }, {})
       }
     }
   }
