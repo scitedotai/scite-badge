@@ -201,7 +201,6 @@ export async function insertBadges ({ forceReload } = {}) {
       continue
     }
 
-    console.log('reloading badge', badge)
     badgesToLoad.push(badge)
   }
 
