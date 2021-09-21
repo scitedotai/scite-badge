@@ -173,19 +173,39 @@ export function insertBadgeWrapper (configEl) {
   return badgeWrapper
 }
 
-export async function insertBadges () {
+export async function insertBadges ({ forceReload } = {}) {
   if (!document.body) {
     return []
   }
 
+  //
+  // Note that for config we have already acted upon
+  // we mark `injected` on the div to avoid re-injecting
+  // the badge wrapper if the user calls `insertBadges`
+  //
   const configEls = document.querySelectorAll('.scite-badge-config')
   for (const el of configEls) {
+    if (el.dataset.injected === 'true') {
+      continue
+    }
+
     insertBadgeWrapper(el)
+    el.dataset.injected = 'true'
   }
 
   const badges = document.querySelectorAll('.scite-badge')
-  let dois = []
+  const badgesToLoad = []
+
   for (const badge of badges) {
+    if (badge.dataset.fetched === 'true' && !forceReload) {
+      continue
+    }
+
+    badgesToLoad.push(badge)
+  }
+
+  let dois = []
+  for (const badge of badgesToLoad) {
     dois.push(getDOI(badge))
   }
 
@@ -200,13 +220,15 @@ export async function insertBadges () {
     const currentDOIs = dois.slice(i * BATCH_SIZE, (i + 1) * BATCH_SIZE)
     const [{ tallies }, { notices }] = await Promise.all([fetchTallies(currentDOIs), fetchNotices(currentDOIs)])
 
-    for (const badge of badges) {
+    for (const badge of badgesToLoad) {
       const doi = getDOI(badge)
       if (doi in tallies) {
         insertBadge(badge, tallies[doi], notices[doi])
       } else {
         insertBadge(badge, { total: 0, citingPublications: 0 }, {})
       }
+
+      badge.dataset.fetched = 'true'
     }
   }
 

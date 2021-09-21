@@ -1,6 +1,6 @@
 {
   "name": "scite-badge",
-  "version": "5.8.0",
+  "version": "6.0.0",
   "description": "Wrapper around scite-widget",
   "main": "index.js",
   "scripts": {
