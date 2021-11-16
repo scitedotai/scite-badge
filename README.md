@@ -25,6 +25,8 @@ To use simply include the Javascript bundle on your page. All elements with the 
 
 `show-labels`: Whether to show tally labels (supporting, contrasting, mentioning) (default: `false`)
 
+`rewardful-id`: A rewardful affiliate ID from [https://scite.ai/affiliate](https://scite.ai/affiliate) (optional)
+
 To pull the target DOI from a meta tag in the document rather than setting inline, you can use the syntax `meta:my_tag_name`. For example:
 
 ```
