@@ -65,7 +65,7 @@ const rows = [
   }
 ]
 
-const Badge = ({ doi, layout, showLabels, forceCollapse, placement, small, autologin }) => (
+const Badge = ({ doi, layout, showLabels, forceCollapse, placement, small, autologin, rewardfulID }) => (
   <div
     className='scite-badge'
     data-doi={doi}
@@ -76,6 +76,7 @@ const Badge = ({ doi, layout, showLabels, forceCollapse, placement, small, autol
     data-autologin={autologin}
     data-campaign='test'
     data-force-collapse={forceCollapse}
+    data-rewardful-id={rewardfulID}
   />
 )
 
@@ -133,6 +134,16 @@ const App = () => (
     <div className='special-container'>
       <div>Some random stuff they like</div>
       <div className='foobar'>Some other random stuff they like</div>
+    </div>
+    <div>
+      Rewardful ID:
+      <Badge
+        doi='10.1016/j.biopsych.2005.08.012'
+        layout='horizontal'
+        showLabels={false}
+        placement='top'
+        rewardfulID='12345'
+      />
     </div>
   </div>
 )

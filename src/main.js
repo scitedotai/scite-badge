@@ -62,6 +62,10 @@ export function getConfig (el) {
     config.autologin = data.autologin
   }
 
+  if (data.rewardfulId) {
+    config.rewardfulID = data.rewardfulId
+  }
+
   return config
 }
 
@@ -97,6 +101,7 @@ export function insertBadge (el, tally, notices) {
   const small = config.small || false
   const campaign = config.campaign || undefined
   const autologin = config.autologin || undefined
+  const rewardfulID = config.rewardfulID || undefined
 
   //
   // Don't ever flip tooltip if they specify placement
@@ -133,6 +138,7 @@ export function insertBadge (el, tally, notices) {
           source={HOST_NAME}
           campaign={campaign}
           autologin={autologin}
+          rewardfulID={rewardfulID}
           isBadge
         />
       </Tooltip>
