@@ -57,12 +57,10 @@ const Link = ({ className, href, children }) => (
 const Message = ({ className }) => (
   <div className={className}>
     <p>
-      See all citations for this article at <Link href='https://scite.ai'>scite.ai</Link>
+      See how this article has been cited at <Link href='https://scite.ai'>scite.ai</Link>
     </p>
     <p className={styles.message}>
-      scite is a platform that combines deep learning with expert
-      analysis to automatically classify citations as supporting,
-      contrasting or mentioning.
+      scite shows how a scientific paper has been cited by providing the context of the citation and a classification describing whether it provides supporting or contrasting evidence for the cited claim
     </p>
   </div>
 )
@@ -70,7 +68,7 @@ const Message = ({ className }) => (
 const TooltipContent = ({ tally, notices }) => (
   <div className={styles.tooltipContent}>
     <img className={styles.logo} src='https://cdn.scite.ai/assets/images/logo.svg' />
-    <span className={styles.slogan}>Making Science Reliable</span>
+    <span className={styles.slogan}>Smart Citations</span>
 
     <Tally tally={tally} notices={notices} />
     {tally && <a className={styles.button} href={`https://scite.ai/reports/${tally.doi}`} target='_blank' rel='noopener noreferrer'>View Citations</a>}
