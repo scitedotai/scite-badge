@@ -1,6 +1,6 @@
 {
   "name": "scite-badge",
-  "version": "7.1.0",
+  "version": "7.2.0",
   "description": "Wrapper around scite-widget",
   "main": "index.js",
   "scripts": {
@@ -22,8 +22,8 @@
     "@popperjs/core": "^2.4.4",
     "classnames": "^2.2.6",
     "jest-fetch-mock": "^3.0.3",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "react-popper": "^2.2.3",
     "scite-widget": "github:scitedotai/scite-widget#master",
     "whatwg-fetch": "^3.5.0"
