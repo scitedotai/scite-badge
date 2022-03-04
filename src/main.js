@@ -3,7 +3,7 @@ import { render, unmountComponentAtNode } from 'react-dom'
 import { Tally } from 'scite-widget'
 import { fetchNotices, fetchTallies } from './scite'
 import Tooltip from './components/Tooltip'
-import 'scite-widget/lib/main.css'
+import 'scite-widget/lib/index-with-fonts.css'
 import './styles/index.css'
 
 const BATCH_SIZE = 500
