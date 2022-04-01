@@ -7,7 +7,8 @@ const TAG = execSync('git describe --abbrev=0').toString().trim()
 
 module.exports = {
   entry: {
-    badge: './src/index.js'
+    'script/badge': './src/index.js',
+    'lib/badge': './src/main.js'
   },
 
   plugins: [
@@ -20,9 +21,9 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js)$/,
+        test: /\.js$/,
         exclude: /node_modules/,
-        use: ['babel-loader']
+        use: 'swc-loader'
       },
       {
         test: /\.css$/i,
@@ -49,6 +50,9 @@ module.exports = {
   },
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, '../dist')
+    path: path.resolve(__dirname, '../dist'),
+    library: {
+      type: 'umd'
+    }
   }
 }

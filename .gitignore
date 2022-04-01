@@ -1,4 +1,4 @@
-dist
+dist/script
 node_modules
 .cache
 npm-debug.log
