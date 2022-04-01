@@ -28,12 +28,12 @@ async function main () {
   await Promise.all([
     upload(
       s3,
-      'dist/badge.bundle.js',
+      'dist/script/badge.bundle.js',
       'badge/scite-badge-latest.min.js'
     ),
     upload(
       s3,
-      'dist/badge.bundle.js',
+      'dist/script.badge.bundle.js',
       `badge/scite-badge-${VERSION}.min.js`
     )
   ])
