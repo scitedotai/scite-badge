@@ -33,7 +33,7 @@ async function main () {
     ),
     upload(
       s3,
-      'dist/script.badge.bundle.js',
+      'dist/script/badge.bundle.js',
       `badge/scite-badge-${VERSION}.min.js`
     )
   ])
