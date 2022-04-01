@@ -2,7 +2,7 @@
   "name": "scite-badge",
   "version": "7.2.0",
   "description": "Wrapper around scite-widget",
-  "main": "index.js",
+  "main": "dist/lib/badge.bundle.js",
   "scripts": {
     "build": "webpack -c config/webpack.prod.js",
     "upload": "node ./scripts/upload.js",
