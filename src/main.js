@@ -1,7 +1,7 @@
 import React from 'react'
 import { render, unmountComponentAtNode } from 'react-dom'
-import { Tally } from 'scite-widget'
-import { fetchNotices, fetchTallies } from './scite'
+import { Tally, SectionTally } from 'scite-widget'
+import { fetchNotices, fetchTallies, fetchSectionTallies } from './scite'
 import Tooltip from './components/Tooltip'
 import 'scite-widget/lib/index-with-fonts.css'
 import './styles/index.css'
@@ -18,6 +18,22 @@ export function getConfig (el) {
     config.doi = doi
   }
 
+  if (data.showTally) {
+    config.showTally = data.showTally === 'true'
+  }
+
+  if (data.showSectionTally) {
+    config.showSectionTally = data.showSectionTally === 'true'
+  }
+
+  if (data.chartType) {
+    config.chartType = data.chartType
+  }
+
+  if (data.showLogoSectionTally) {
+    config.showLogoSectionTally = data.showLogoSectionTally === 'true'
+  }
+
   if (data.showZero) {
     config.showZero = data.showZero === 'true'
   }
@@ -28,6 +44,10 @@ export function getConfig (el) {
 
   if (data.layout) {
     config.horizontal = data.layout === 'horizontal'
+  }
+
+  if (data.layoutSectionTally) {
+    config.horizontalSectionTally = data.layoutSectionTally === 'horizontal'
   }
 
   if (data.tooltipPlacement) {
@@ -89,8 +109,13 @@ function getDOI (el) {
   return doi && doi.toLowerCase().trim()
 }
 
-export function insertBadge (el, tally, notices) {
+export function insertBadge (el, tally, notices, sectionTally) {
   const config = getConfig(el)
+
+  const showTally = config.showTally || false
+  const showSectionTally = config.showSectionTally || false
+  const showBothTallies = showTally && showSectionTally
+
   const doi = config.doi
   const showZero = config.showZero || false
   const forceCollapse = config.forceCollapse || false
@@ -102,6 +127,11 @@ export function insertBadge (el, tally, notices) {
   const campaign = config.campaign || undefined
   const autologin = config.autologin || undefined
   const rewardfulID = config.rewardfulID || undefined
+
+  // Section Tally related values
+  const chartType = config.chartType || null
+  const showLogoSectionTally = config.showLogoSectionTally
+  const horizontalSectionTally = config.horizontalSectionTally
 
   //
   // Don't ever flip tooltip if they specify placement
@@ -116,35 +146,109 @@ export function insertBadge (el, tally, notices) {
     console.warn('Scite badge: unmounting component on another react DOM')
   }
 
-  render(
-    (
-      <Tooltip
-        doi={doi}
-        tally={tally}
-        showZero={showZero}
-        placement={placement}
-        flip={flip}
-        slide={slide}
-        notices={notices}
-      >
-        <Tally
+  if (showBothTallies) {
+    render(
+      (
+        <>
+          <div style={{ display: 'inline-block', 'margin-bottom': '4px' }}>
+            <Tooltip
+              doi={doi}
+              tally={tally}
+              showZero={showZero}
+              placement={placement}
+              flip={flip}
+              slide={slide}
+              notices={notices}
+            >
+              <Tally
+                tally={tally}
+                horizontal={horizontal}
+                showZero={showZero}
+                forceCollapse={forceCollapse}
+                showLabels={showLabels}
+                notices={notices}
+                small={small}
+                source={HOST_NAME}
+                campaign={campaign}
+                autologin={autologin}
+                rewardfulID={rewardfulID}
+                isBadge
+              />
+            </Tooltip>
+          </div>
+          <div>
+            <SectionTally
+              tally={sectionTally}
+              horizontal={horizontalSectionTally}
+              showZero={showZero}
+              forceCollapse={forceCollapse}
+              showLabels={showLabels}
+              small={small}
+              source={HOST_NAME}
+              campaign={campaign}
+              autologin={autologin}
+              rewardfulID={rewardfulID}
+              isBadge
+              chartType={chartType}
+              showLogo={showLogoSectionTally}
+            />
+          </div>
+        </>
+      ),
+      el
+    )
+  } else if (showTally) {
+    render(
+      (
+        <Tooltip
+          doi={doi}
           tally={tally}
-          horizontal={horizontal}
+          showZero={showZero}
+          placement={placement}
+          flip={flip}
+          slide={slide}
+          notices={notices}
+        >
+          <Tally
+            tally={tally}
+            horizontal={horizontal}
+            showZero={showZero}
+            forceCollapse={forceCollapse}
+            showLabels={showLabels}
+            notices={notices}
+            small={small}
+            source={HOST_NAME}
+            campaign={campaign}
+            autologin={autologin}
+            rewardfulID={rewardfulID}
+            isBadge
+          />
+        </Tooltip>
+      ),
+      el
+    )
+  } else if (showSectionTally) {
+    render(
+      (
+        <SectionTally
+          tally={sectionTally}
+          horizontal={horizontalSectionTally}
           showZero={showZero}
           forceCollapse={forceCollapse}
           showLabels={showLabels}
-          notices={notices}
           small={small}
           source={HOST_NAME}
           campaign={campaign}
           autologin={autologin}
           rewardfulID={rewardfulID}
           isBadge
+          chartType={chartType}
+          showLogo={showLogoSectionTally}
         />
-      </Tooltip>
-    ),
-    el
-  )
+      ),
+      el
+    )
+  }
 }
 
 /**
@@ -224,14 +328,15 @@ export async function insertBadges ({ forceReload } = {}) {
   const pages = Math.ceil(dois.length / BATCH_SIZE)
   for (let i = 0; i < pages; i++) {
     const currentDOIs = dois.slice(i * BATCH_SIZE, (i + 1) * BATCH_SIZE)
-    const [{ tallies }, { notices }] = await Promise.all([fetchTallies(currentDOIs), fetchNotices(currentDOIs)])
+
+    const [{ tallies }, { notices }, { tallies: sectionTallies }] = await Promise.all([fetchTallies(currentDOIs), fetchNotices(currentDOIs), fetchSectionTallies(currentDOIs)])
 
     for (const badge of badgesToLoad) {
       const doi = getDOI(badge)
       if (doi in tallies) {
-        insertBadge(badge, tallies[doi], notices[doi])
+        insertBadge(badge, tallies[doi], notices[doi], sectionTallies[doi])
       } else {
-        insertBadge(badge, { total: 0, citingPublications: 0 }, {})
+        insertBadge(badge, { total: 0, citingPublications: 0 }, {}, {})
       }
 
       badge.dataset.fetched = 'true'
