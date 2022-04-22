@@ -167,7 +167,7 @@ const App = () => (
 
       <Row doi='10.1016/j.biopsych.2005.08.012' showTally={false} showSectionTally />
 
-      <Row doi='10.1016/j.biopsych.2005.08.012' showTally={false} showSectionTally showLabels={true} />
+      <Row doi='10.1016/j.biopsych.2005.08.012' showTally={false} showSectionTally showLabels />
 
       <Row doi='10.1016/j.biopsych.2005.08.012' showTally={false} showSectionTally layoutSectionTally='horizontal' />
 
