@@ -18,16 +18,16 @@ export function getConfig (el) {
     config.doi = doi
   }
 
-  if (data.showTally) {
-    // If data.showTally is set, check if is 'true'.
+  if (data.tallyShow) {
+    // If data.tallyShow is set, check if is 'true'.
     // If it is not set, default to true for backwards compatibility.
-    // Cannot just do data.showTally || true because if it is passed in as 'false',
+    // Cannot just do data.tallyShow || true because if it is passed in as 'false',
     //   it will be overwritten to true.
-    config.showTally = data.showTally !== null ? data.showTally === 'true' : true
+    config.tallyShow = data.tallyShow !== null ? data.tallyShow === 'true' : true
   }
 
-  if (data.showSectionTally) {
-    config.showSectionTally = data.showSectionTally === 'true'
+  if (data.sectionTallyShow) {
+    config.sectionTallyShow = data.sectionTallyShow === 'true'
   }
 
   if (data.showLogo) {
@@ -50,8 +50,8 @@ export function getConfig (el) {
     config.horizontal = data.layout === 'horizontal'
   }
 
-  if (data.layoutSectionTally) {
-    config.horizontalSectionTally = data.layoutSectionTally === 'horizontal'
+  if (data.sectionTallyLayout) {
+    config.horizontalSectionTally = data.sectionTallyLayout === 'horizontal'
   }
 
   if (data.tooltipPlacement) {
@@ -116,9 +116,9 @@ function getDOI (el) {
 export function insertBadge (el, tally, notices, sectionTally) {
   const config = getConfig(el)
 
-  const showTally = config.showTally || false
-  const showSectionTally = config.showSectionTally || false
-  const showBothTallies = showTally && showSectionTally
+  const tallyShow = config.tallyShow || false
+  const sectionTallyShow = config.sectionTallyShow || false
+  const showBothTallies = tallyShow && sectionTallyShow
 
   const doi = config.doi
   const showZero = config.showZero || false
@@ -202,7 +202,7 @@ export function insertBadge (el, tally, notices, sectionTally) {
       ),
       el
     )
-  } else if (showTally) {
+  } else if (tallyShow) {
     render(
       (
         <Tooltip
@@ -233,7 +233,7 @@ export function insertBadge (el, tally, notices, sectionTally) {
       ),
       el
     )
-  } else if (showSectionTally) {
+  } else if (sectionTallyShow) {
     render(
       (
         <SectionTally
