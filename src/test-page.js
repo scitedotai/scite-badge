@@ -65,7 +65,7 @@ const rows = [
   }
 ]
 
-const Badge = ({ doi, layout, showLabels, forceCollapse, placement, small, autologin, rewardfulID, chartType, showTally = true, showSectionTally = false, showLogoSectionTally = true, layoutSectionTally }) => (
+const Badge = ({ doi, layout, showLabels, forceCollapse, placement, small, autologin, rewardfulID, chartType, showTally = true, showSectionTally = false, showLogo = true, layoutSectionTally }) => (
   <div
     className='scite-badge'
     data-doi={doi}
@@ -80,12 +80,12 @@ const Badge = ({ doi, layout, showLabels, forceCollapse, placement, small, autol
     data-show-tally={showTally}
     data-show-section-tally={showSectionTally}
     data-chart-type={chartType}
-    data-show-logo-section-tally={showLogoSectionTally}
+    data-show-logo={showLogo}
     data-layout-section-tally={layoutSectionTally}
   />
 )
 
-const Row = ({ doi, layout, showLabels, forceCollapse, placement, small, autologin, chartType, showTally = true, showSectionTally = false, showLogoSectionTally = true, layoutSectionTally }) => (
+const Row = ({ doi, layout, showLabels, forceCollapse, placement, small, autologin, chartType, showTally = true, showSectionTally = false, showLogo = true, layoutSectionTally }) => (
   <div className='badge-row'>
     <p className='paper'>
       etsi vereor, iudices, ne turpe sit pro fortissimo viro dicere incipientem timere minimeque deceat, cum T. Annius ipse magis de rei publicae salute quam de sua perturbetur1, me ad eius causam parem animi magnitudinem adferre non posse, tamen haec novi iudici nova forma terret oculos qui, quocumque inciderunt, veterem consuetudinem fori et pristinum morem iudiciorum requirunt.
@@ -101,7 +101,7 @@ const Row = ({ doi, layout, showLabels, forceCollapse, placement, small, autolog
       showTally={showTally}
       showSectionTally={showSectionTally}
       chartType={chartType}
-      showLogoSectionTally={showLogoSectionTally}
+      showLogo={showLogo}
       layoutSectionTally={layoutSectionTally}
     />
   </div>
@@ -157,9 +157,9 @@ const App = () => (
     </div>
 
     <div className='wide'>
-      <Row doi='10.1016/j.biopsych.2005.08.012' showTally small layout='horizontal' showSectionTally chartType='bar' showLogoSectionTally={false} />
+      <Row doi='10.1016/j.biopsych.2005.08.012' showTally small layout='horizontal' showSectionTally chartType='bar' showLogo={false} />
 
-      <Row doi='10.1016/j.biopsych.2005.08.012' showTally small showSectionTally chartType='bar' showLogoSectionTally={false} />
+      <Row doi='10.1016/j.biopsych.2005.08.012' showTally small showSectionTally chartType='bar' showLogo={false} />
 
       <Row doi='10.1016/j.biopsych.2005.08.012' showTally={false} showSectionTally chartType='bar' />
 

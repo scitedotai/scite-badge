@@ -19,19 +19,23 @@ export function getConfig (el) {
   }
 
   if (data.showTally) {
-    config.showTally = data.showTally === 'true'
+    // If data.showTally is set, check if is 'true'.
+    // If it is not set, default to true for backwards compatibility.
+    // Cannot just do data.showTally || true because if it is passed in as 'false',
+    //   it will be overwritten to true.
+    config.showTally = data.showTally !== null ? data.showTally === 'true' : true
   }
 
   if (data.showSectionTally) {
     config.showSectionTally = data.showSectionTally === 'true'
   }
 
-  if (data.chartType) {
-    config.chartType = data.chartType
+  if (data.showLogo) {
+    config.showLogo = data.showLogo === 'true'
   }
 
-  if (data.showLogoSectionTally) {
-    config.showLogoSectionTally = data.showLogoSectionTally === 'true'
+  if (data.chartType) {
+    config.chartType = data.chartType
   }
 
   if (data.showZero) {
@@ -127,10 +131,10 @@ export function insertBadge (el, tally, notices, sectionTally) {
   const campaign = config.campaign || undefined
   const autologin = config.autologin || undefined
   const rewardfulID = config.rewardfulID || undefined
+  const showLogo = config.showLogo || true
 
   // Section Tally related values
   const chartType = config.chartType || null
-  const showLogoSectionTally = config.showLogoSectionTally
   const horizontalSectionTally = config.horizontalSectionTally
 
   //
@@ -173,6 +177,7 @@ export function insertBadge (el, tally, notices, sectionTally) {
                 autologin={autologin}
                 rewardfulID={rewardfulID}
                 isBadge
+                showLogo={showLogo}
               />
             </Tooltip>
           </div>
@@ -190,7 +195,7 @@ export function insertBadge (el, tally, notices, sectionTally) {
               rewardfulID={rewardfulID}
               isBadge
               chartType={chartType}
-              showLogo={showLogoSectionTally}
+              showLogo={false}
             />
           </div>
         </>
@@ -222,6 +227,7 @@ export function insertBadge (el, tally, notices, sectionTally) {
             autologin={autologin}
             rewardfulID={rewardfulID}
             isBadge
+            showLogo={showLogo}
           />
         </Tooltip>
       ),
@@ -243,7 +249,7 @@ export function insertBadge (el, tally, notices, sectionTally) {
           rewardfulID={rewardfulID}
           isBadge
           chartType={chartType}
-          showLogo={showLogoSectionTally}
+          showLogo={showLogo}
         />
       ),
       el
