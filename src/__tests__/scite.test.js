@@ -15,12 +15,10 @@ beforeEach(() => {
 
 describe('fetchesTallies', () => {
   it('fetchesTallies returns empty with no tallies', async () => {
-    fetch.mockResponseOnce(JSON.stringify({ tallies: { } }))
-
-    const tallies = await fetchTallies(['10.1038/nature10167'])
+    const tallies = await fetchTallies([])
 
     expect(tallies).toEqual({ tallies: {} })
-    expect(fetch).toHaveBeenCalledTimes(1)
+    expect(fetch).toHaveBeenCalledTimes(0)
   })
 
   it('fetchesTallies returns with tallies', async () => {
@@ -47,10 +45,10 @@ describe('fetchesNotices', () => {
   it('fetchesNotices returns empty with no papers', async () => {
     fetch.mockResponseOnce(JSON.stringify({ papers: { } }))
 
-    const notices = await fetchNotices(['10.1891/0889-8391.13.2.158'])
+    const notices = await fetchNotices([])
 
     expect(notices).toEqual({ notices: {} })
-    expect(fetch).toHaveBeenCalledTimes(1)
+    expect(fetch).toHaveBeenCalledTimes(0)
   })
 
   it('fetchesNotices returns expected with papers', async () => {
