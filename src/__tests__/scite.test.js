@@ -17,7 +17,7 @@ describe('fetchesTallies', () => {
   it('fetchesTallies returns empty with no tallies', async () => {
     fetch.mockResponseOnce(JSON.stringify({ tallies: { } }))
 
-    const tallies = await fetchTallies([])
+    const tallies = await fetchTallies(['10.1038/nature10167'])
 
     expect(tallies).toEqual({ tallies: {} })
     expect(fetch).toHaveBeenCalledTimes(1)
@@ -26,7 +26,7 @@ describe('fetchesTallies', () => {
   it('fetchesTallies returns with tallies', async () => {
     fetch.mockResponseOnce(JSON.stringify(tallyMock))
 
-    const tallies = await fetchTallies([])
+    const tallies = await fetchTallies(['10.1038/nature10167'])
 
     expect(tallies).toEqual(talliesExpected)
     expect(fetch).toHaveBeenCalledTimes(1)
@@ -36,7 +36,7 @@ describe('fetchesTallies', () => {
     fetch.mockResponseOnce('', { status: 500, headers: { 'content-type': 'application/json' } })
     fetch.mockResponseOnce(JSON.stringify(tallyMock))
 
-    const tallies = await fetchTallies([])
+    const tallies = await fetchTallies(['10.1038/nature10167'])
 
     expect(tallies).toEqual(talliesExpected)
     expect(fetch).toHaveBeenCalledTimes(2)
@@ -47,7 +47,7 @@ describe('fetchesNotices', () => {
   it('fetchesNotices returns empty with no papers', async () => {
     fetch.mockResponseOnce(JSON.stringify({ papers: { } }))
 
-    const notices = await fetchNotices([])
+    const notices = await fetchNotices(['10.1891/0889-8391.13.2.158'])
 
     expect(notices).toEqual({ notices: {} })
     expect(fetch).toHaveBeenCalledTimes(1)
@@ -56,7 +56,7 @@ describe('fetchesNotices', () => {
   it('fetchesNotices returns expected with papers', async () => {
     fetch.mockResponseOnce(JSON.stringify(papersMock))
 
-    const notices = await fetchNotices([])
+    const notices = await fetchNotices(['10.1891/0889-8391.13.2.158'])
 
     expect(notices).toEqual(noticesExpected)
     expect(fetch).toHaveBeenCalledTimes(1)
@@ -66,7 +66,7 @@ describe('fetchesNotices', () => {
     fetch.mockResponseOnce('', { status: 500, headers: { 'content-type': 'application/json' } })
     fetch.mockResponseOnce(JSON.stringify(papersMock))
 
-    const notices = await fetchNotices([])
+    const notices = await fetchNotices(['10.1891/0889-8391.13.2.158'])
 
     expect(notices).toEqual(noticesExpected)
     expect(fetch).toHaveBeenCalledTimes(2)
