@@ -5,6 +5,10 @@ const { fetch } = window
 const NOTICE_STATUSES = ['retracted', 'has expression of concern', 'withdrawn', 'has erratum', 'has correction']
 
 export const fetchTallies = async (dois, retry = 0, maxRetries = 8) => {
+  if (!dois) {
+    return { tallies: {} }
+  }
+
   const fetchFailed = new Error('Failed to get Tallies')
   try {
     const response = await fetch('https://api.scite.ai/tallies', {
@@ -35,6 +39,10 @@ export const fetchTallies = async (dois, retry = 0, maxRetries = 8) => {
 }
 
 export const fetchNotices = async (dois, retry = 0, maxRetries = 8) => {
+  if (!dois) {
+    return { notices: {} }
+  }
+
   const fetchFailed = new Error('Failed to get notices')
   try {
     const response = await fetch('https://api.scite.ai/papers', {
@@ -75,6 +83,10 @@ export const fetchNotices = async (dois, retry = 0, maxRetries = 8) => {
 }
 
 export const fetchSectionTallies = async (dois, retry = 0, maxRetries = 8) => {
+  if (!dois) {
+    return { tallies: {} }
+  }
+
   const fetchFailed = new Error('Failed to get Section Tallies')
   try {
     const response = await fetch('https://api.scite.ai/tallies/cited-by-sections', {

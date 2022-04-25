@@ -93,6 +93,35 @@ export function getConfig (el) {
   return config
 }
 
+function isSectionTally (el) {
+  const data = el.dataset
+  return data.sectionTallyShow === 'true'
+}
+
+function isRegularTally (el) {
+  const data = el.dataset
+  return data.tallyShow !== null ? data.tallyShow === 'true' : true
+}
+
+function getTallyAndSectionTallyDOIs (badgesToLoad) {
+  const tallyDOIs = []
+  const sectionTallyDOIs = []
+  for (const badge of badgesToLoad) {
+    const doi = getDOI(badge)
+    if (isRegularTally(badge)) {
+      tallyDOIs.push(doi)
+    }
+    if (isSectionTally(badge)) {
+      sectionTallyDOIs.push(doi)
+    }
+  }
+
+  return {
+    tallyDOIs: [...new Set(tallyDOIs)],
+    sectionTallyDOIs: [...new Set(sectionTallyDOIs)]
+  }
+}
+
 function getDOI (el) {
   const data = el.dataset
   let doi
@@ -154,7 +183,7 @@ export function insertBadge (el, tally, notices, sectionTally) {
     render(
       (
         <>
-          <div style={{ display: 'inline-block', 'margin-bottom': '4px' }}>
+          <div style={{ display: 'inline-block', marginBottom: '4px' }}>
             <Tooltip
               doi={doi}
               tally={tally}
@@ -320,27 +349,25 @@ export async function insertBadges ({ forceReload } = {}) {
     badgesToLoad.push(badge)
   }
 
-  let dois = []
-  for (const badge of badgesToLoad) {
-    dois.push(getDOI(badge))
-  }
-
-  if (dois.length === 0) {
+  const { tallyDOIs, sectionTallyDOIs } = getTallyAndSectionTallyDOIs(badgesToLoad)
+  if (tallyDOIs.length === 0 && sectionTallyDOIs.length === 0) {
     return badges
   }
 
-  dois = [...new Set(dois)]
-
-  const pages = Math.ceil(dois.length / BATCH_SIZE)
+  const pages = Math.max(Math.ceil(tallyDOIs.length / BATCH_SIZE), Math.ceil(sectionTallyDOIs.length / BATCH_SIZE))
   for (let i = 0; i < pages; i++) {
-    const currentDOIs = dois.slice(i * BATCH_SIZE, (i + 1) * BATCH_SIZE)
+    // We iterate to the largest list's batchSize.
+    //   If we go past the smaller one's size, slice() will return []
+    //   and nothing will be retrieved.
+    const currentTallyDOIs = tallyDOIs.slice(i * BATCH_SIZE, (i + 1) * BATCH_SIZE)
+    const currentSectionTallyDOIs = sectionTallyDOIs.slice(i * BATCH_SIZE, (i + 1) * BATCH_SIZE)
 
-    const [{ tallies }, { notices }, { tallies: sectionTallies }] = await Promise.all([fetchTallies(currentDOIs), fetchNotices(currentDOIs), fetchSectionTallies(currentDOIs)])
+    const [{ tallies }, { notices }, { tallies: sectionTallies }] = await Promise.all([fetchTallies(currentTallyDOIs), fetchNotices(currentTallyDOIs), fetchSectionTallies(currentSectionTallyDOIs)])
 
     for (const badge of badgesToLoad) {
       const doi = getDOI(badge)
-      if (doi in tallies) {
-        insertBadge(badge, tallies[doi], notices[doi], sectionTallies[doi])
+      if ((doi in tallies) || (doi in sectionTallies)) {
+        insertBadge(badge, tallies[doi] || { total: 0, citingPublications: 0 }, notices[doi] || {}, sectionTallies[doi] || {})
       } else {
         insertBadge(badge, { total: 0, citingPublications: 0 }, {}, {})
       }
