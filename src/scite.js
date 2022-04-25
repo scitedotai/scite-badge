@@ -5,7 +5,7 @@ const { fetch } = window
 const NOTICE_STATUSES = ['retracted', 'has expression of concern', 'withdrawn', 'has erratum', 'has correction']
 
 export const fetchTallies = async (dois, retry = 0, maxRetries = 8) => {
-  if (!dois) {
+  if (!dois || dois.length === 0) {
     return { tallies: {} }
   }
 
@@ -39,7 +39,7 @@ export const fetchTallies = async (dois, retry = 0, maxRetries = 8) => {
 }
 
 export const fetchNotices = async (dois, retry = 0, maxRetries = 8) => {
-  if (!dois) {
+  if (!dois || dois.length === 0) {
     return { notices: {} }
   }
 
@@ -83,7 +83,7 @@ export const fetchNotices = async (dois, retry = 0, maxRetries = 8) => {
 }
 
 export const fetchSectionTallies = async (dois, retry = 0, maxRetries = 8) => {
-  if (!dois) {
+  if (!dois || dois.length === 0) {
     return { tallies: {} }
   }
 

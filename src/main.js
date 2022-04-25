@@ -23,7 +23,7 @@ export function getConfig (el) {
     // If it is not set, default to true for backwards compatibility.
     // Cannot just do data.tallyShow || true because if it is passed in as 'false',
     //   it will be overwritten to true.
-    config.tallyShow = data.tallyShow !== null ? data.tallyShow === 'true' : true
+    config.tallyShow = ('tallyShow' in data && data.tallyShow !== null) ? data.tallyShow === 'true' : true
   }
 
   if (data.sectionTallyShow) {
@@ -100,7 +100,7 @@ function isSectionTally (el) {
 
 function isRegularTally (el) {
   const data = el.dataset
-  return data.tallyShow !== null ? data.tallyShow === 'true' : true
+  return ('tallyShow' in data && data.tallyShow !== null) ? data.tallyShow === 'true' : true
 }
 
 function getTallyAndSectionTallyDOIs (badgesToLoad) {
@@ -355,6 +355,7 @@ export async function insertBadges ({ forceReload } = {}) {
   }
 
   const pages = Math.max(Math.ceil(tallyDOIs.length / BATCH_SIZE), Math.ceil(sectionTallyDOIs.length / BATCH_SIZE))
+
   for (let i = 0; i < pages; i++) {
     // We iterate to the largest list's batchSize.
     //   If we go past the smaller one's size, slice() will return []
@@ -365,9 +366,16 @@ export async function insertBadges ({ forceReload } = {}) {
     const [{ tallies }, { notices }, { tallies: sectionTallies }] = await Promise.all([fetchTallies(currentTallyDOIs), fetchNotices(currentTallyDOIs), fetchSectionTallies(currentSectionTallyDOIs)])
 
     for (const badge of badgesToLoad) {
+      if (badge.dataset.fetched === 'true') {
+        continue
+      }
+
       const doi = getDOI(badge)
       if ((doi in tallies) || (doi in sectionTallies)) {
-        insertBadge(badge, tallies[doi] || { total: 0, citingPublications: 0 }, notices[doi] || {}, sectionTallies[doi] || {})
+        const tally = doi in tallies ? tallies[doi] : { total: 0, citingPublications: 0 }
+        const noticeTally = doi in tallies ? notices[doi] : {}
+        const sectionTally = doi in sectionTallies ? sectionTallies[doi] : {}
+        insertBadge(badge, tally, noticeTally, sectionTally)
       } else {
         insertBadge(badge, { total: 0, citingPublications: 0 }, {}, {})
       }
