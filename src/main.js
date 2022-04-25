@@ -356,6 +356,10 @@ export async function insertBadges ({ forceReload } = {}) {
 
   const pages = Math.max(Math.ceil(tallyDOIs.length / BATCH_SIZE), Math.ceil(sectionTallyDOIs.length / BATCH_SIZE))
 
+  let doiTallyMap = {}
+  let doiNoticeMap = {}
+  let doiSectionTallyMap = {}
+
   for (let i = 0; i < pages; i++) {
     // We iterate to the largest list's batchSize.
     //   If we go past the smaller one's size, slice() will return []
@@ -365,16 +369,25 @@ export async function insertBadges ({ forceReload } = {}) {
 
     const [{ tallies }, { notices }, { tallies: sectionTallies }] = await Promise.all([fetchTallies(currentTallyDOIs), fetchNotices(currentTallyDOIs), fetchSectionTallies(currentSectionTallyDOIs)])
 
-    for (const badge of badgesToLoad) {
-      if (badge.dataset.fetched === 'true') {
-        continue
-      }
+    doiTallyMap = {
+      ...doiTallyMap,
+      ...tallies
+    }
+    doiNoticeMap = {
+      ...doiNoticeMap,
+      ...notices
+    }
+    doiSectionTallyMap = {
+      ...doiSectionTallyMap,
+      ...sectionTallies
+    }
 
+    for (const badge of badgesToLoad) {
       const doi = getDOI(badge)
-      if ((doi in tallies) || (doi in sectionTallies)) {
-        const tally = doi in tallies ? tallies[doi] : { total: 0, citingPublications: 0 }
-        const noticeTally = doi in tallies ? notices[doi] : {}
-        const sectionTally = doi in sectionTallies ? sectionTallies[doi] : {}
+      if ((doi in doiTallyMap) || (doi in doiSectionTallyMap)) {
+        const tally = doi in doiTallyMap ? doiTallyMap[doi] : { total: 0, citingPublications: 0 }
+        const noticeTally = doi in doiTallyMap ? notices[doi] : {}
+        const sectionTally = doi in doiSectionTallyMap ? doiSectionTallyMap[doi] : {}
         insertBadge(badge, tally, noticeTally, sectionTally)
       } else {
         insertBadge(badge, { total: 0, citingPublications: 0 }, {}, {})
