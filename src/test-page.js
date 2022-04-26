@@ -165,6 +165,8 @@ const App = () => (
 
       <Row doi='10.1016/j.biopsych.2005.08.012' tallyShow={false} sectionTallyShow chartType='pie' />
 
+      <Row doi='10.1016/j.biopsych.2005.08.012' tallyShow={false} sectionTallyShow chartType='donut' />
+
       <Row doi='10.1016/j.biopsych.2005.08.012' tallyShow={false} sectionTallyShow />
 
       <Row doi='10.1016/j.biopsych.2005.08.012' tallyShow={false} sectionTallyShow showLabels />

@@ -211,21 +211,31 @@ export function insertBadge (el, tally, notices, sectionTally) {
             </Tooltip>
           </div>
           <div>
-            <SectionTally
+            <Tooltip
+              doi={doi}
               tally={sectionTally}
-              horizontal={horizontalSectionTally}
               showZero={showZero}
-              forceCollapse={forceCollapse}
-              showLabels={showLabels}
-              small={small}
-              source={HOST_NAME}
-              campaign={campaign}
-              autologin={autologin}
-              rewardfulID={rewardfulID}
-              isBadge
-              chartType={chartType}
-              showLogo={false}
-            />
+              placement={placement}
+              flip={flip}
+              slide={slide}
+              tallyType='sections'
+            >
+              <SectionTally
+                tally={sectionTally}
+                horizontal={horizontalSectionTally}
+                showZero={showZero}
+                forceCollapse={forceCollapse}
+                showLabels={showLabels}
+                small={small}
+                source={HOST_NAME}
+                campaign={campaign}
+                autologin={autologin}
+                rewardfulID={rewardfulID}
+                isBadge
+                chartType={chartType}
+                showLogo={false}
+              />
+            </Tooltip>
           </div>
         </>
       ),
@@ -265,21 +275,31 @@ export function insertBadge (el, tally, notices, sectionTally) {
   } else if (sectionTallyShow) {
     render(
       (
-        <SectionTally
+        <Tooltip
+          doi={doi}
           tally={sectionTally}
-          horizontal={horizontalSectionTally}
           showZero={showZero}
-          forceCollapse={forceCollapse}
-          showLabels={showLabels}
-          small={small}
-          source={HOST_NAME}
-          campaign={campaign}
-          autologin={autologin}
-          rewardfulID={rewardfulID}
-          isBadge
-          chartType={chartType}
-          showLogo={showLogo}
-        />
+          placement={placement}
+          flip={flip}
+          slide={slide}
+          tallyType='sections'
+        >
+          <SectionTally
+            tally={sectionTally}
+            horizontal={horizontalSectionTally}
+            showZero={showZero}
+            forceCollapse={forceCollapse}
+            showLabels={showLabels}
+            small={small}
+            source={HOST_NAME}
+            campaign={campaign}
+            autologin={autologin}
+            rewardfulID={rewardfulID}
+            isBadge
+            chartType={chartType}
+            showLogo={showLogo}
+          />
+        </Tooltip>
       ),
       el
     )

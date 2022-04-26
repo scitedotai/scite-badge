@@ -1,8 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import classNames from 'classnames'
 import { Manager, Reference, Popper } from 'react-popper'
-import { Count } from 'scite-widget'
+import { Count, SectionTallyCount } from 'scite-widget'
 import styles from '../styles/Tooltip.css'
+
+const SectionTally = ({ className, tally }) => (
+  <div className={classNames(styles.tally, className)}>
+    <div className={styles.tallyCounts}>
+      <SectionTallyCount type='introduction' count={(tally && tally.introduction && tally.introduction.toLocaleString()) || 0} showLabels />
+      <SectionTallyCount type='methods' count={(tally && tally.methods && tally.methods.toLocaleString()) || 0} showLabels />
+      <SectionTallyCount type='results' count={(tally && tally.results && tally.results.toLocaleString()) || 0} showLabels />
+      <SectionTallyCount type='discussion' count={(tally && tally.discussion && tally.discussion.toLocaleString()) || 0} showLabels />
+      <SectionTallyCount type='other' count={(tally && tally.other && tally.other.toLocaleString()) || 0} showLabels />
+    </div>
+  </div>
+)
 
 const Tally = ({ className, tally, notices }) => (
   <div className={classNames(styles.tally, className)}>
@@ -60,7 +72,7 @@ const Message = ({ className }) => (
       See how this article has been cited at <Link href='https://scite.ai'>scite.ai</Link>
     </p>
     <p className={styles.message}>
-      scite shows how a scientific paper has been cited by providing the context of the citation and a classification describing whether it provides supporting or contrasting evidence for the cited claim
+      scite shows how a scientific paper has been cited by providing the context of the citation, a classification describing whether it supports, mentions, or contrasts the cited claim, and a label indicating in which section the citation was made
     </p>
   </div>
 )
@@ -76,6 +88,16 @@ const TooltipContent = ({ tally, notices }) => (
   </div>
 )
 
+const SectionTallyTooltipContent = ({ tally }) => (
+  <div>
+    <img className={styles.logo} src='https://cdn.scite.ai/assets/images/logo.svg' />
+    <span className={styles.slogan}>Cited in Sections</span>
+    <SectionTally tally={tally} />
+    {tally && <a className={styles.button} href={`https://scite.ai/reports/${tally.doi}`} target='_blank' rel='noopener noreferrer'>View Citations</a>}
+    <Message />
+  </div>
+)
+
 const TooltipPopper = ({
   show,
   doi,
@@ -85,7 +107,8 @@ const TooltipPopper = ({
   flip,
   slide,
   handleMouseEnter,
-  handleMouseLeave
+  handleMouseLeave,
+  tallyType
 }) => {
   let updatePosition
   // XXX: Hack to fix positioning on first load, sorry
@@ -141,7 +164,8 @@ const TooltipPopper = ({
             onMouseLeave={handleMouseLeave}
             onClick={handleClickTooltip}
           >
-            <TooltipContent tally={tally} notices={notices} />
+            {tallyType === 'smart_citations' && (<TooltipContent tally={tally} notices={notices} />)}
+            {tallyType === 'sections' && (<SectionTallyTooltipContent tally={tally} />)}
           </div>
         )
       }}
@@ -157,7 +181,8 @@ export const Tooltip = ({
   placement = 'top',
   flip,
   slide = 0,
-  children
+  children,
+  tallyType = 'smart_citations'
 }) => {
   const [showTooltip, setShowTooltip] = useState(false)
   let hideTooltipIntvl
@@ -217,6 +242,7 @@ export const Tooltip = ({
         slide={slide}
         handleMouseEnter={handleMouseEnter}
         handleMouseLeave={handleMouseLeave}
+        tallyType={tallyType}
       />
     </Manager>
   )
