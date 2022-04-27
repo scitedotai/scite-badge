@@ -19,11 +19,9 @@ export function getConfig (el) {
   }
 
   if (data.tallyShow) {
-    // If data.tallyShow is set, check if is 'true'.
-    // If it is not set, default to true for backwards compatibility.
-    // Cannot just do data.tallyShow || true because if it is passed in as 'false',
-    //   it will be overwritten to true.
-    config.tallyShow = ('tallyShow' in data && data.tallyShow !== null) ? data.tallyShow === 'true' : true
+    config.tallyShow = data.tallyShow === 'true'
+  } else {
+    config.tallyShow = true
   }
 
   if (data.sectionTallyShow) {
