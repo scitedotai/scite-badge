@@ -8,7 +8,7 @@ describe('getConfig', () => {
     const config = main.getConfig(el)
     const keys = Object.keys(config)
 
-    expect(keys.length).toBe(0)
+    expect(keys.length).toBe(1)
   })
 
   it('loads values', () => {

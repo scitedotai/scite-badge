@@ -1,6 +1,6 @@
 {
   "name": "scite-badge",
-  "version": "8.0.1",
+  "version": "8.0.2",
   "description": "Wrapper around scite-widget",
   "main": "dist/lib/badge.bundle.js",
   "scripts": {
