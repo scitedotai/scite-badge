@@ -65,7 +65,7 @@ const rows = [
   }
 ]
 
-const Badge = ({ doi, layout, showLabels, forceCollapse, placement, small, autologin, rewardfulID }) => (
+const Badge = ({ doi, layout, showLabels, forceCollapse, placement, small, autologin, rewardfulID, chartType, tallyShow = true, sectionTallyShow = false, showLogo = true, sectionTallyLayout }) => (
   <div
     className='scite-badge'
     data-doi={doi}
@@ -77,10 +77,15 @@ const Badge = ({ doi, layout, showLabels, forceCollapse, placement, small, autol
     data-campaign='test'
     data-force-collapse={forceCollapse}
     data-rewardful-id={rewardfulID}
+    data-chart-type={chartType}
+    data-show-logo={showLogo}
+    data-tally-show={tallyShow}
+    data-section-tally-show={sectionTallyShow}
+    data-section-tally-layout={sectionTallyLayout}
   />
 )
 
-const Row = ({ doi, layout, showLabels, forceCollapse, placement, small, autologin }) => (
+const Row = ({ doi, layout, showLabels, forceCollapse, placement, small, autologin, chartType, tallyShow = true, sectionTallyShow = false, showLogo = true, sectionTallyLayout }) => (
   <div className='badge-row'>
     <p className='paper'>
       etsi vereor, iudices, ne turpe sit pro fortissimo viro dicere incipientem timere minimeque deceat, cum T. Annius ipse magis de rei publicae salute quam de sua perturbetur1, me ad eius causam parem animi magnitudinem adferre non posse, tamen haec novi iudici nova forma terret oculos qui, quocumque inciderunt, veterem consuetudinem fori et pristinum morem iudiciorum requirunt.
@@ -93,6 +98,11 @@ const Row = ({ doi, layout, showLabels, forceCollapse, placement, small, autolog
       placement={placement}
       small={small}
       autologin={autologin}
+      tallyShow={tallyShow}
+      sectionTallyShow={sectionTallyShow}
+      chartType={chartType}
+      showLogo={showLogo}
+      sectionTallyLayout={sectionTallyLayout}
     />
   </div>
 )
@@ -144,6 +154,25 @@ const App = () => (
         placement='top'
         rewardfulID='12345'
       />
+    </div>
+
+    <div className='wide'>
+      <Row doi='10.1016/j.biopsych.2005.08.012' tallyShow small layout='horizontal' sectionTallyShow chartType='bar' showLogo={false} />
+
+      <Row doi='10.1016/j.biopsych.2005.08.012' tallyShow small sectionTallyShow chartType='bar' showLogo={false} />
+
+      <Row doi='10.1016/j.biopsych.2005.08.012' tallyShow={false} sectionTallyShow chartType='bar' />
+
+      <Row doi='10.1016/j.biopsych.2005.08.012' tallyShow={false} sectionTallyShow chartType='pie' />
+
+      <Row doi='10.1016/j.biopsych.2005.08.012' tallyShow={false} sectionTallyShow chartType='donut' />
+
+      <Row doi='10.1016/j.biopsych.2005.08.012' tallyShow={false} sectionTallyShow />
+
+      <Row doi='10.1016/j.biopsych.2005.08.012' tallyShow={false} sectionTallyShow showLabels />
+
+      <Row doi='10.1016/j.biopsych.2005.08.012' tallyShow={false} sectionTallyShow sectionTallyLayout='horizontal' />
+
     </div>
   </div>
 )

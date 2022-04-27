@@ -27,6 +27,16 @@ To use simply include the Javascript bundle on your page. All elements with the 
 
 `rewardful-id`: A rewardful affiliate ID from [https://scite.ai/affiliate](https://scite.ai/affiliate) (optional)
 
+`show-logo`: Whether the scite logo should show up (defaults `True`)
+
+`tally-show`: Whether you want to show the widget for Smart Citation tallies (defaults `True`)
+
+`section-tally-show`: Whether you want to show the Section Tally widget (defaults `False`)
+
+`section-tally-layout`: Whether you want to show the Section Tally widget in the 'vertical' or 'horizontal' configuration (default: `vertical`)
+
+`chart-type`: What type of chart you want to show for the Section Tally widget. Must be one of `bar`, `pie`, `donut`. Defaults to `null`.
+
 To pull the target DOI from a meta tag in the document rather than setting inline, you can use the syntax `meta:my_tag_name`. For example:
 
 ```
