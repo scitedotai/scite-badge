@@ -29,6 +29,4 @@
 
 :global(.scite-badge[data-section-tally-layout='horizontal'] .scite-section-tally) {
     padding: 0px;
-    min-height: 0px;
-    max-height: 32px;
 }
