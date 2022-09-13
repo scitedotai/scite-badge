@@ -15,7 +15,9 @@ module.exports = merge(common, {
   mode: 'development',
   devtool: 'inline-source-map',
   devServer: {
-    contentBase: path.join(__dirname, '../dist'),
-    port: 8001
+    port: 8001,
+    static: {
+      directory: path.join(__dirname, '../dist')
+    }
   }
 })
