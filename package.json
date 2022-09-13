@@ -1,6 +1,6 @@
 {
   "name": "scite-badge",
-  "version": "8.0.6",
+  "version": "8.0.7",
   "description": "Wrapper around scite-widget",
   "main": "dist/lib/badge.bundle.js",
   "scripts": {
@@ -46,7 +46,7 @@
     "swc-loader": "^0.1.15",
     "webpack": "^5.37.1",
     "webpack-cli": "^4.7.0",
-    "webpack-dev-server": "^3.11.2",
+    "webpack-dev-server": "^4.11.0",
     "webpack-merge": "^5.7.3"
   },
   "standard": {
