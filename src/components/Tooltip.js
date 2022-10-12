@@ -16,35 +16,52 @@ const SectionTally = ({ className, tally }) => (
   </div>
 )
 
+const NoticeCounts = ({ notices }) => {
+  if (!notices || notices.length === 0 || !Array.isArray(notices)) {
+    return null
+  }
+
+  const counts = notices.reduce((acc, nextStatus) => {
+    if (!acc[nextStatus]) {
+      acc[nextStatus] = 0
+    }
+
+    acc[nextStatus] += 1
+
+    return acc
+  }, {})
+
+  return (
+    <div className={styles.notices}>
+      {notices.map((status, i) => (
+        <div key={`${i}-${status}`} className={styles.notice}>
+          <div className={styles.tallyCounts}>
+            {(status === 'Retracted' || status === 'Withdrawn') ? (
+              <Count type='retractions' />
+            ) : (
+              <Count type='notices' />
+            )}
+          </div>
+          <div className={styles.noticeLabel}>
+            {(status === 'Retracted' || status === 'Withdrawn') ? (
+              <span className={classNames(styles.retractionsCopy, styles[status])}>
+                This paper has been {status.toLowerCase()} {counts[status]} {counts[status] === 1 ? 'time' : 'times'}
+              </span>
+            ) : (
+              <span className={classNames(styles.noticeCopy, styles[status])}>
+                This paper {status.toLowerCase().replace('has ', `has ${counts[status]} `)}
+              </span>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
 const Tally = ({ className, tally, notices }) => (
   <div className={classNames(styles.tally, className)}>
-    {notices && notices.length > 0 && (
-      <div className={styles.notices}>
-        {notices.map((status, i) => (
-          <div key={`${i}-${status}`} className={styles.notice}>
-            <div className={styles.tallyCounts}>
-              {(status === 'Retracted' || status === 'Withdrawn') ? (
-                <Count type='retractions' />
-              ) : (
-                <Count type='notices' />
-              )}
-            </div>
-            <div className={styles.noticeLabel}>
-              {(status === 'Retracted' || status === 'Withdrawn') ? (
-                <span className={classNames(styles.retractionsCopy, styles[status])}>
-                This paper has been {status.toLowerCase()}
-                </span>
-              ) : (
-                <span className={classNames(styles.noticeCopy, styles[status])}>
-                  This paper {status.toLowerCase()}
-                </span>
-              )}
-            </div>
-          </div>
-        ))}
-      </div>
-    )}
-
+    <NoticeCounts notices={notices} />
     <div className={styles.tallyCounts}>
       <Count type='publications' count={tally && tally.citingPublications ? tally.citingPublications.toLocaleString() : 0} className={styles.tallyCount} />
       <Count type='supporting' count={tally && tally.supporting ? tally.supporting.toLocaleString() : 0} className={styles.tallyCount} />
