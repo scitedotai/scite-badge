@@ -1,6 +1,7 @@
 import React from 'react'
 import { render, unmountComponentAtNode } from 'react-dom'
-import { Tally, SectionTally } from 'scite-widget'
+import Tally from './components/Tally'
+import SectionTally from './components/SectionTally'
 import { fetchNotices, fetchTallies, fetchSectionTallies } from './scite'
 import Tooltip from './components/Tooltip'
 import 'scite-widget/lib/index-with-fonts.css'

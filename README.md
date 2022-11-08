@@ -1,6 +1,6 @@
 # Scite Badge #
 
-Thin wrapper around [scite widget](https://github.com/scitedotai/scite-widget) to allow embedding on pages.
+Code for [Scite badge](https://scite.ai/badge) to allow embedding on pages.
 
 ## Example Usage ##
 
@@ -88,5 +88,3 @@ $ npm run dev
 ```
 
 This will serve the application at `localhost:8001`.
-
-Tip: Change the scite-widget branch in `./package.json` to one you are working on.

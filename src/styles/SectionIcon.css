@@ -1,0 +1,48 @@
+.sectionIcon {
+    speak: none;
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-variant: normal !important;
+    line-height: 1.5 !important;
+    margin-right: 5px !important;
+    display: inline-block !important;
+}
+
+.sectionIcon:before {
+    color: white;
+    padding: 2px 4px;
+    text-align: center;
+    width: 12px;
+    transform: scale(1);
+    display: inline-block !important;
+    border-radius: 4px;
+}
+
+.introduction:before {
+    content: "I";
+    background: #002AB2;
+}
+
+.methods:before {
+    content: "M";
+    background: #0036E5;
+}
+
+.results:before {
+    content: "R";
+    background: #0062FF;
+}
+
+.discussion:before {
+    content: "D";
+    background: #66A3FF;
+}
+
+.other:before {
+    content: "O";
+    background: #9EC4F0;
+}
+
+.smallSectionIcon {
+  line-height: 1 !important;
+}

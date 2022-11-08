@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import classNames from 'classnames'
 import { Manager, Reference, Popper } from 'react-popper'
-import { Count, SectionTallyCount } from 'scite-widget'
+import Count from './Count'
+import SectionTallyCount from './SectionTallyCount'
 import styles from '../styles/Tooltip.css'
 
 const SectionTally = ({ className, tally }) => (
