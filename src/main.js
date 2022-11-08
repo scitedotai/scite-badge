@@ -4,7 +4,6 @@ import Tally from './components/Tally'
 import SectionTally from './components/SectionTally'
 import { fetchNotices, fetchTallies, fetchSectionTallies } from './scite'
 import Tooltip from './components/Tooltip'
-import 'scite-widget/lib/index-with-fonts.css'
 import './styles/index.css'
 
 const BATCH_SIZE = 500
