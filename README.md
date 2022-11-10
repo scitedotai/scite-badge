@@ -1,5 +1,6 @@
-# Scite Badge #
+# DEPRECATED #
 
+<<<<<<< Updated upstream
 Thin wrapper around [scite widget](https://github.com/scitedotai/scite-widget) to allow embedding on pages.
 
 ## Example Usage ##
@@ -90,3 +91,6 @@ $ npm run dev
 This will serve the application at `localhost:8001`.
 
 Tip: Change the scite-widget branch in `./package.json` to one you are working on.
+=======
+Code moved to central repo: https://github.com/scitedotai/scite-extension
+>>>>>>> Stashed changes
