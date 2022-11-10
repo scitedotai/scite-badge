@@ -8,7 +8,8 @@ const TAG = execSync('git describe --abbrev=0').toString().trim()
 module.exports = {
   entry: {
     'script/badge': './src/index.js',
-    'lib/badge': './src/main.js'
+    'lib/badge': './src/main.js',
+    'lib/components': './src/exported-components.js'
   },
 
   plugins: [
@@ -49,7 +50,7 @@ module.exports = {
     ]
   },
   output: {
-    filename: '[name].bundle.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, '../dist'),
     library: {
       type: 'umd'

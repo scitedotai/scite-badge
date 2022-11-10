@@ -2,7 +2,7 @@
   "name": "scite-badge",
   "version": "8.0.8",
   "description": "Scite badge code and related components",
-  "main": "dist/lib/badge.bundle.js",
+  "main": "dist/lib",
   "scripts": {
     "build": "webpack -c config/webpack.prod.js",
     "upload": "node ./scripts/upload.js",
@@ -44,9 +44,9 @@
     "snazzy": "^8.0.0",
     "standard": "^14.3.4",
     "style-loader": "^2.0.0",
-    "swc-loader": "^0.1.15",
-    "webpack": "^5.37.1",
-    "webpack-cli": "^4.7.0",
+    "swc-loader": "^0.2.3",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.11.1",
     "webpack-merge": "^5.8.0"
   },
