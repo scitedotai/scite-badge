@@ -2,6 +2,7 @@ const path = require('path')
 const { execSync } = require('child_process')
 const { DefinePlugin } = require('webpack')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const TAG = execSync('git describe --abbrev=0').toString().trim()
 
@@ -16,7 +17,8 @@ module.exports = {
     new CleanWebpackPlugin(),
     new DefinePlugin({
       __VERSION__: JSON.stringify(TAG)
-    })
+    }),
+    new MiniCssExtractPlugin()
   ],
 
   module: {
@@ -29,7 +31,9 @@ module.exports = {
       {
         test: /\.css$/i,
         use: [
-          'style-loader',
+          {
+            loader: MiniCssExtractPlugin.loader
+          },
           {
             loader: 'css-loader',
             options: {
@@ -42,7 +46,9 @@ module.exports = {
       {
         test: /\.css$/i,
         use: [
-          'style-loader',
+          {
+            loader: MiniCssExtractPlugin.loader
+          },
           'css-loader'
         ],
         include: /node_modules/

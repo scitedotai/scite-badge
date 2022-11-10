@@ -2,7 +2,10 @@
   "name": "scite-badge",
   "version": "8.0.8",
   "description": "Scite badge code and related components",
-  "main": "dist/lib",
+  "main": "dist/lib/badge.js",
+  "exports": {
+    "./": "dist/lib/"
+  },
   "scripts": {
     "build": "webpack -c config/webpack.prod.js",
     "upload": "node ./scripts/upload.js",
@@ -40,6 +43,7 @@
     "jest": "^29.3.0",
     "jest-environment-jsdom": "^29.3.0",
     "mime-types": "^2.1.35",
+    "mini-css-extract-plugin": "^2.6.1",
     "pre-commit": "^1.2.2",
     "snazzy": "^8.0.0",
     "standard": "^14.3.4",
